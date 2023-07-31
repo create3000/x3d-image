@@ -80,7 +80,7 @@ async function generate (argv)
    {
       type: "number",
       alias: "d",
-      description: "Wait the specified number of milliseconds before generating the image.",
+      description: "Wait the specified number of seconds before generating the image.",
       default: 0,
    })
    .help ()
@@ -104,7 +104,7 @@ async function generate (argv)
    await Browser .loadURL (new X3D .MFString (input))
 
    if (args .delay)
-      await sleep (args .delay)
+      await sleep (args .delay * 1000)
 
    const blob = await generateImage (canvas, mimeType, args .quality)
 

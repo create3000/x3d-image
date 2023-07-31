@@ -30,7 +30,7 @@ A Number between 0 and 1 indicating the image quality to be used when creating i
 
 ### -d *delay*
 
-Wait the specified number of milliseconds before generating the image.
+Wait the specified number of seconds before generating the image.
 
 ## Supported Output File Types
 

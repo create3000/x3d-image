@@ -20,7 +20,7 @@ Set input file.
 
 Set output file.
 
-### -s 'WIDTHxHEIGHT'
+### -s WIDTHxHEIGHT
 
 Set image size in pixels, default is '1280x720'.
 

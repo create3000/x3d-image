@@ -76,6 +76,13 @@ async function generate (argv)
       description: "A Number between 0 and 1 indicating the image quality to be used when creating images using file formats that support lossy compression (such as JPEG).",
       default: 1,
    })
+   .option ("delay",
+   {
+      type: "number",
+      alias: "d",
+      description: "Wait the specified number of milliseconds before generating the image.",
+      default: 0,
+   })
    .help ()
    .alias ("help", "h") .argv
 
@@ -95,6 +102,9 @@ async function generate (argv)
    Browser .setBrowserOption ("TextureQuality",   "HIGH")
 
    await Browser .loadURL (new X3D .MFString (input))
+
+   if (args .delay)
+      sleep (args .delay)
 
    const blob = await generateImage (canvas, mimeType, args .quality)
 
@@ -120,3 +130,5 @@ function mimeTypeFromPath (filename)
          return "image/png";
    }
 }
+
+const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))

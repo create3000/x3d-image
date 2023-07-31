@@ -28,6 +28,10 @@ Set image size in pixels, default is '1280x720'.
 
 A Number between 0 and 1 indicating the image quality to be used when creating images using file formats that support lossy compression (such as JPEG).
 
+### -d *delay*
+
+Wait the specified number of milliseconds before generating the image.
+
 ## Supported Output File Types
 
 | Description | File Extension | MIME Type  |

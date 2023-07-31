@@ -37,7 +37,7 @@ async function generate (argv)
    const args = yargs (argv)
    .scriptName ("x3d-image")
    .usage ("$0 args")
-   .command ("x3d-tidy", "Generate image and video files from X3D")
+   .command ("x3d-image", "Generate image and video files from X3D")
    .fail ((msg, error, yargs) =>
    {
       console .error (msg)
@@ -60,17 +60,63 @@ async function generate (argv)
       type: "string",
       alias: "o",
       description: "Set output file. To output it to stdout use only the extension, e.g. '.x3dv'.",
+      demandOption: true,
+   })
+   .option ("size",
+   {
+      type: "string",
+      alias: "s",
+      description: "Set image or video size in pixels.",
+      default: "1280x720",
+   })
+   .option ("quality",
+   {
+      type: "number",
+      alias: "q",
+      description: "A Number between 0 and 1 indicating the image quality to be used when creating images using file formats that support lossy compression (such as JPEG).",
+      default: 1,
    })
    .help ()
-   .alias ("help", "h") .argv;
+   .alias ("help", "h") .argv
 
    const
-      Browser = X3D .createBrowser () .browser,
-      input   = path .resolve (args .cwd, args .input),
-      output  = path .resolve (args .cwd, args .output)
+      canvas   = document .getElementById ("browser"),
+      Browser  = canvas .browser,
+      input    = path .resolve (args .cwd, args .input),
+      output   = path .resolve (args .cwd, args .output),
+      size     = args .size .split ("x"),
+      width    = size [0] || 1280,
+      height   = size [1] || 720,
+      mimeType = mimeTypeFromPath (output)
 
-   Browser .setBrowserOption ("PrimitiveQuality", "HIGH");
-   Browser .setBrowserOption ("TextureQuality",   "HIGH");
+   canvas .setAttribute ("style", `width: ${width}px; height: ${height}px`)
+
+   Browser .setBrowserOption ("PrimitiveQuality", "HIGH")
+   Browser .setBrowserOption ("TextureQuality",   "HIGH")
 
    await Browser .loadURL (new X3D .MFString (input))
+
+   const blob = await generateImage (canvas, mimeType, args .quality)
+
+   fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()))
+}
+
+async function generateImage (canvas, mimeType, quality)
+{
+   return new Promise ((resolve, reject) =>
+   {
+      canvas .toBlob (blob => resolve (blob), mimeType, quality)
+   })
+}
+
+function mimeTypeFromPath (filename)
+{
+   switch (path .extname (filename) .toLowerCase ())
+   {
+      case ".jpg":
+      case ".jpeg":
+         return "image/jpeg";
+      default:
+         return "image/png";
+   }
 }

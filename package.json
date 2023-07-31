@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx . -i tests/IndexedFaceSet/IndexedFaceSet.x3d -o tests/test.jpg"
   },
   "repository": {
     "type": "git",

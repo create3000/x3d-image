@@ -6,7 +6,7 @@ const
    colors   = require ("colors")
 
 process .env .ELECTRON_DISABLE_SECURITY_WARNINGS = "true"
-// process .env .ELECTRON_ENABLE_LOGGING            = 1
+process .env .ELECTRON_ENABLE_LOGGING            = 1
 
 if (process .platform === "darwin")
 {

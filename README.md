@@ -44,7 +44,7 @@ Wait the specified number of seconds before generating the image.
 Generate an JPEG image from X3D.
 
 ```sh
-$ npx x3d-image -s '1600x900' -i file.x3d -o file.jpg
+$ npx x3d-image -s 1600x900 -i file.x3d -o file.jpg
 ```
 
 ## See Also

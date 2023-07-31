@@ -85,8 +85,8 @@ async function generate (argv)
       input    = path .resolve (args .cwd, args .input),
       output   = path .resolve (args .cwd, args .output),
       size     = args .size .split ("x"),
-      width    = size [0] || 1280,
-      height   = size [1] || 720,
+      width    = parseInt (size [0]) || 1280,
+      height   = parseInt (size [1]) || 720,
       mimeType = mimeTypeFromPath (output)
 
    canvas .setAttribute ("style", `width: ${width}px; height: ${height}px`)

@@ -1,0 +1,36 @@
+{
+  "name": "x3d-image",
+  "version": "1.0.0",
+  "description": "Generate image and video files from X3D.",
+  "main": "src/main.js",
+  "bin": {
+    "x3d-image": "bin/x3d-tidy.js"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/create3000/x3d-image.git"
+  },
+  "keywords": [
+    "X3D",
+    "video",
+    "image",
+    "PNG",
+    "JPEG"
+  ],
+  "author": "Holger Seelig",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/create3000/x3d-image/issues"
+  },
+  "homepage": "https://www.npmjs.com/package/x3d-image",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "electron": "^25.3.2",
+    "x_ite": "^8.11.4",
+    "yargs": "^17.7.2"
+  }
+}

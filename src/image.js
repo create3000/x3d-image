@@ -37,7 +37,7 @@ async function generate (argv)
    const args = yargs (argv)
    .scriptName ("x3d-image")
    .usage ("$0 args")
-   .command ("x3d-image", "Generate image and video files from X3D")
+   .command ("x3d-image", "Generate image files from X3D")
    .fail ((msg, error, yargs) =>
    {
       console .error (msg)
@@ -66,7 +66,7 @@ async function generate (argv)
    {
       type: "string",
       alias: "s",
-      description: "Set image or video size in pixels.",
+      description: "Set image size in pixels.",
       default: "1280x720",
    })
    .option ("quality",

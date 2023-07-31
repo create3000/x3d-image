@@ -104,7 +104,7 @@ async function generate (argv)
    await Browser .loadURL (new X3D .MFString (input))
 
    if (args .delay)
-      sleep (args .delay)
+      await sleep (args .delay)
 
    const blob = await generateImage (canvas, mimeType, args .quality)
 

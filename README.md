@@ -32,6 +32,24 @@ A Number between 0 and 1 indicating the image quality to be used when creating i
 
 Wait the specified number of seconds before generating the image.
 
+### -v
+
+Modify the current view so that all objects fit in view volume.
+
+## Supported Input File Types
+
+| Encoding         | File Extension | MIME Type       |
+|------------------|----------------|-----------------|
+| X3D XML          | .x3d, .x3dz    | model/x3d+xml   |
+| X3D JSON         | .x3dj, .x3djz  | model/x3d+json  |
+| X3D Classic VRML | .x3dv, .x3dvz  | model/x3d+vrml  |
+| VRML             | .wrl, .wrz     | model/vrml      |
+| glTF             | .gltf, .glb    | model/gltf+json |
+| Wavefront OBJ    | .obj           | model/obj       |
+| STL              | .stl           | model/stl       |
+| PLY              | .ply           | model/ply       |
+| SVG Document     | .svg, .svgz    | image/svg+xml   |
+
 ## Supported Output File Types
 
 | Description | File Extension | MIME Type  |
@@ -41,7 +59,7 @@ Wait the specified number of seconds before generating the image.
 
 ## Examples
 
-Generate an JPEG image from X3D.
+Generate an JPEG image from X3D with size 1600x900.
 
 ```sh
 $ npx x3d-image -s 1600x900 -i file.x3d -o file.jpg

@@ -83,6 +83,12 @@ async function generate (argv)
       description: "Wait the specified number of seconds before generating the image.",
       default: 0,
    })
+   .option ("view-all",
+   {
+      type: "boolean",
+      alias: "v",
+      description: "Modify the current view so that all objects fit in view volume.",
+   })
    .help ()
    .alias ("help", "h") .argv
 
@@ -102,6 +108,12 @@ async function generate (argv)
    Browser .setBrowserOption ("TextureQuality",   "HIGH")
 
    await Browser .loadURL (new X3D .MFString (input))
+
+   if (args ["view-all"])
+   {
+      Browser .viewAll (0)
+      await wait ()
+   }
 
    if (args .delay)
       await sleep (args .delay * 1000)
@@ -130,5 +142,7 @@ function mimeTypeFromPath (filename)
          return "image/png";
    }
 }
+
+const wait = () => new Promise (resolve => requestAnimationFrame (resolve))
 
 const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))

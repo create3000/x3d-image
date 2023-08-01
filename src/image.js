@@ -37,7 +37,7 @@ async function generate (argv)
    const args = yargs (argv)
    .scriptName ("x3d-image")
    .usage ("$0 args")
-   .command ("x3d-image", "Generate image files from X3D")
+   .command ("x3d-image", "Render image files from X3D")
    .fail ((msg, error, yargs) =>
    {
       console .error (msg)

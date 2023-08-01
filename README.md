@@ -1,6 +1,6 @@
 # x3d-image
 
-Generate image files from X3D.
+Render image files from X3D.
 
 ## Synopsis
 
@@ -59,7 +59,7 @@ Modify the current view so that all objects fit in view volume.
 
 ## Examples
 
-Generate an JPEG image from X3D with size 1600x900.
+Render an JPEG image from X3D with size 1600x900.
 
 ```sh
 $ npx x3d-image -s 1600x900 -i file.x3d -o file.jpg

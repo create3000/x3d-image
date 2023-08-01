@@ -102,7 +102,7 @@ async function generate (argv)
       height   = parseInt (size [1]) || 720,
       mimeType = mimeTypeFromPath (output)
 
-   canvas .setAttribute ("style", `width: ${width}px; height: ${height}px`)
+   canvas .setAttribute ("style", `width: ${width}px; height: ${height}px;`)
 
    Browser .setBrowserOption ("PrimitiveQuality", "HIGH")
    Browser .setBrowserOption ("TextureQuality",   "HIGH")
@@ -137,9 +137,9 @@ function mimeTypeFromPath (filename)
    {
       case ".jpg":
       case ".jpeg":
-         return "image/jpeg";
+         return "image/jpeg"
       default:
-         return "image/png";
+         return "image/png"
    }
 }
 

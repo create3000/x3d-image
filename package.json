@@ -15,10 +15,22 @@
     "url": "git+https://github.com/create3000/x3d-image.git"
   },
   "keywords": [
-    "X3D",
+    "GLB",
+    "glTF2",
     "image",
+    "JPEG",
+    "JSON",
+    "npx",
+    "PLY",
     "PNG",
-    "JPEG"
+    "STL",
+    "SVG",
+    "VRML",
+    "Wavefront-OBJ",
+    "wrl",
+    "x_ite",
+    "X3D",
+    "XML"
   ],
   "author": "Holger Seelig",
   "license": "GPL-3.0",

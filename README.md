@@ -52,10 +52,10 @@ Modify the current view so that all objects fit in view volume.
 
 ## Supported Output File Types
 
-| Description | File Extension | MIME Type  |
-|-------------|----------------|------------|
-| PNG         | .png           | image/png  |
-| JPEG        | .jpg, .jpeg    | image/jpeg |
+| Encoding | File Extension | MIME Type  |
+|----------|----------------|------------|
+| PNG      | .png           | image/png  |
+| JPEG     | .jpg, .jpeg    | image/jpeg |
 
 ## Examples
 

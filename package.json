@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "test": "npx . -d 1000 -s 1600x900 -i tests/IndexedFaceSet/IndexedFaceSet.x3d -o tests/test.jpg"
+    "test": "make tests"
   },
   "repository": {
     "type": "git",

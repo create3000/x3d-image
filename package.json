@@ -1,6 +1,6 @@
 {
   "name": "x3d-image",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Render image files from X3D",
   "main": "src/main.js",
   "bin": {
@@ -38,13 +38,13 @@
     "url": "https://github.com/create3000/x3d-image/issues"
   },
   "homepage": "https://www.npmjs.com/package/x3d-image",
-	"contributors": [
-		{
-			"name": "Holger Seelig",
-			"email": "holger.seelig@gmail.com",
-			"url": "https://github.com/create3000"
-		}
-	],
+  "contributors": [
+    {
+      "name": "Holger Seelig",
+      "email": "holger.seelig@gmail.com",
+      "url": "https://github.com/create3000"
+    }
+  ],
   "dependencies": {
     "colors": "^1.4.0",
     "electron": "^25.3.2",

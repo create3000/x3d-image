@@ -92,6 +92,9 @@ async function generate (argv)
    .help ()
    .alias ("help", "h") .argv
 
+   if (args .help)
+      return
+
    const
       canvas   = document .getElementById ("browser"),
       Browser  = canvas .browser,

@@ -36,6 +36,10 @@ Wait the specified number of seconds before generating the image.
 
 Modify the current view so that all objects fit in view volume.
 
+### -h
+
+Show help.
+
 ## Supported Input File Types
 
 | Encoding         | File Extension | MIME Type       |

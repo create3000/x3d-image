@@ -1,14 +1,14 @@
 {
   "name": "x3d-image",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Render image files from X3D",
   "main": "src/main.js",
   "bin": {
     "x3d-image": "bin/x3d-tidy.js"
   },
   "files": [
-     "bin/*",
-     "src/*"
+    "bin/*",
+    "src/*"
   ],
   "scripts": {
     "start": "electron .",
@@ -52,7 +52,7 @@
   "dependencies": {
     "colors": "^1.4.0",
     "electron": "^25.4.0",
-    "x_ite": "^8.11.7",
+    "x_ite": "^8.11.8",
     "yargs": "^17.7.2"
   }
 }

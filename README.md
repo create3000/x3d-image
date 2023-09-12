@@ -32,9 +32,13 @@ A Number between 0 and 1 indicating the image quality to be used when creating i
 
 Wait the specified number of seconds before generating the image.
 
-### -v
+### -a
 
 Modify the current view so that all objects fit in view volume.
+
+### -v
+
+Show version.
 
 ### -h
 

@@ -2,6 +2,7 @@
 
 const
    X3D      = require ("x_ite"),
+   pkg      = require ("../package.json"),
    electron = require ("electron"),
    yargs    = require ("yargs"),
    path     = require ("path"),
@@ -38,6 +39,8 @@ async function generate (argv)
    .scriptName ("x3d-image")
    .usage ("$0 args")
    .command ("x3d-image", "Render image files from X3D")
+   .version (pkg .version)
+   .alias ("v", "version")
    .fail ((msg, error, yargs) =>
    {
       console .error (msg)
@@ -86,7 +89,7 @@ async function generate (argv)
    .option ("view-all",
    {
       type: "boolean",
-      alias: "v",
+      alias: "a",
       description: "Modify the current view so that all objects fit in view volume.",
    })
    .help ()

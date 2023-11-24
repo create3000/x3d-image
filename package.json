@@ -4,7 +4,7 @@
   "description": "Render image files from X3D",
   "main": "src/main.js",
   "bin": {
-    "x3d-image": "bin/x3d-tidy.js"
+    "x3d-image": "bin/x3d-image.js"
   },
   "files": [
     "bin/*",

@@ -4,4 +4,4 @@ tests:
 	npx . -a -s 1600x900 -i tests/IndexedFaceSet/IndexedFaceSet.x3d -o tests/view-all.png
 
 publish:
-	perl build/publish.pl
+	node build/publish.js

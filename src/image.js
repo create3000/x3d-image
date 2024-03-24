@@ -7,29 +7,29 @@ const
    yargs    = require ("yargs"),
    path     = require ("path"),
    fs       = require ("fs"),
-   DEBUG    = false
+   DEBUG    = false;
 
 // Redirect console messages.
 
-process .exit  = (code)  => electron .ipcRenderer .send ("exit", code)
-console .log   = (... messages) => electron .ipcRenderer .send ("log",   messages)
-console .warn  = (... messages) => electron .ipcRenderer .send ("warn",  messages)
-console .error = (... messages) => electron .ipcRenderer .send ("error", messages)
+process .exit  = (code)  => electron .ipcRenderer .send ("exit", code);
+console .log   = (... messages) => electron .ipcRenderer .send ("log",   messages);
+console .warn  = (... messages) => electron .ipcRenderer .send ("warn",  messages);
+console .error = (... messages) => electron .ipcRenderer .send ("error", messages);
 
-electron .ipcRenderer .on ("main", async (event, argv) => main (argv))
+electron .ipcRenderer .on ("main", async (event, argv) => main (argv));
 
 async function main (argv)
 {
    try
    {
-      await generate (argv)
+      await generate (argv);
 
-      process .exit ()
+      process .exit ();
    }
    catch (error)
    {
-      console .error (error .message || error)
-      process .exit (1)
+      console .error (error .message || error);
+      process .exit (1);
    }
 }
 
@@ -43,8 +43,8 @@ async function generate (argv)
    .alias ("v", "version")
    .fail ((msg, error, yargs) =>
    {
-      console .error (msg)
-      process .exit (1)
+      console .error (msg);
+      process .exit (1);
    })
    .option ("cwd",
    {
@@ -96,7 +96,7 @@ async function generate (argv)
    .alias ("help", "h") .argv
 
    if (args .help)
-      return
+      return;
 
    const
       canvas   = document .getElementById ("browser"),
@@ -106,35 +106,35 @@ async function generate (argv)
       size     = args .size .split ("x"),
       width    = parseInt (size [0]) || 1280,
       height   = parseInt (size [1]) || 720,
-      mimeType = mimeTypeFromPath (output)
+      mimeType = mimeTypeFromPath (output);
 
-   canvas .setAttribute ("style", `width: ${width}px; height: ${height}px;`)
+   canvas .setAttribute ("style", `width: ${width}px; height: ${height}px;`);
 
-   Browser .setBrowserOption ("PrimitiveQuality", "HIGH")
-   Browser .setBrowserOption ("TextureQuality",   "HIGH")
+   Browser .setBrowserOption ("PrimitiveQuality", "HIGH");
+   Browser .setBrowserOption ("TextureQuality",   "HIGH");
 
-   await Browser .loadURL (new X3D .MFString (input))
+   await Browser .loadURL (new X3D .MFString (input));
 
    if (args ["view-all"])
    {
-      Browser .viewAll (0)
-      await wait ()
+      Browser .viewAll (0);
+      await wait ();
    }
 
    if (args .delay)
-      await sleep (args .delay * 1000)
+      await sleep (args .delay * 1000);
 
-   const blob = await generateImage (canvas, mimeType, args .quality)
+   const blob = await generateImage (canvas, mimeType, args .quality);
 
-   fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()))
+   fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
 }
 
 async function generateImage (canvas, mimeType, quality)
 {
    return new Promise ((resolve, reject) =>
    {
-      canvas .toBlob (blob => resolve (blob), mimeType, quality)
-   })
+      canvas .toBlob (blob => resolve (blob), mimeType, quality);
+   });
 }
 
 function mimeTypeFromPath (filename)
@@ -143,12 +143,12 @@ function mimeTypeFromPath (filename)
    {
       case ".jpg":
       case ".jpeg":
-         return "image/jpeg"
+         return "image/jpeg";
       default:
-         return "image/png"
+         return "image/png";
    }
 }
 
-const wait = () => new Promise (resolve => requestAnimationFrame (resolve))
+const wait = () => new Promise (resolve => requestAnimationFrame (resolve));
 
-const sleep = delay => new Promise (resolve => setTimeout (resolve, delay))
+const sleep = delay => new Promise (resolve => setTimeout (resolve, delay));

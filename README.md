@@ -1,5 +1,9 @@
 # x3d-image
 
+[![NPM Version](https://img.shields.io/npm/v/x3d-image)](https://www.npmjs.com/package/x3d-image)
+[![Build Size](https://badgen.net/bundlephobia/minzip/x3d-image)](#)
+[![NPM Downloads](https://img.shields.io/npm/dw/x3d-image)](https://npmtrends.com/x3d-image)
+
 Render image files from X3D.
 
 ## Synopsis

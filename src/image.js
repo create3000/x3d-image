@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 const
    X3D      = require ("x_ite"),
@@ -93,7 +93,10 @@ async function generate (argv)
       description: "Modify the current view so that all objects fit in view volume.",
    })
    .help ()
-   .alias ("help", "h") .argv
+   .alias ("help", "h") .argv;
+
+   if (args .version)
+      return;
 
    if (args .help)
       return;

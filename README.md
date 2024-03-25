@@ -3,6 +3,7 @@
 [![NPM Version](https://img.shields.io/npm/v/x3d-image)](https://www.npmjs.com/package/x3d-image)
 [![Build Size](https://badgen.net/bundlephobia/minzip/x3d-image)](#)
 [![NPM Downloads](https://img.shields.io/npm/dw/x3d-image)](https://npmtrends.com/x3d-image)
+[![DeepScan grade](https://deepscan.io/api/teams/23540/projects/26816/branches/855449/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=23540&pid=26816&bid=855449)
 
 Render image files from X3D.
 

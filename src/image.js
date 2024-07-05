@@ -111,11 +111,10 @@ async function generate (argv)
       height   = parseInt (size [1]) || 720,
       mimeType = mimeTypeFromPath (output);
 
-   canvas .setAttribute ("style", `width: ${width}px; height: ${height}px;`);
-
    Browser .setBrowserOption ("PrimitiveQuality", "HIGH");
    Browser .setBrowserOption ("TextureQuality",   "HIGH");
 
+   await Browser .resize (width, height);
    await Browser .loadURL (new X3D .MFString (input));
 
    if (args ["view-all"])

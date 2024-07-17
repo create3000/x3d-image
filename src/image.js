@@ -114,7 +114,7 @@ async function generate (argv)
    Browser .setBrowserOption ("PrimitiveQuality", "HIGH");
    Browser .setBrowserOption ("TextureQuality",   "HIGH");
 
-   Browser .resize (width, height);
+   await Browser .resize (width, height);
    await Browser .loadURL (new X3D .MFString (input));
 
    if (args ["view-all"])

@@ -1,6 +1,6 @@
 {
   "name": "x3d-image",
-  "version": "1.0.72",
+  "version": "1.0.73",
   "description": "Render image files from X3D",
   "main": "src/main.js",
   "bin": {

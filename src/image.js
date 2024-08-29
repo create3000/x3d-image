@@ -120,7 +120,7 @@ async function generate (argv)
    if (args ["view-all"])
    {
       Browser .viewAll (0);
-      await wait ();
+      await Browser .nextFrame ();
    }
 
    if (args .delay)
@@ -150,7 +150,5 @@ function mimeTypeFromPath (filename)
          return "image/png";
    }
 }
-
-const wait = () => new Promise (resolve => requestAnimationFrame (resolve));
 
 const sleep = delay => new Promise (resolve => setTimeout (resolve, delay));

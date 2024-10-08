@@ -6,6 +6,7 @@ const
    electron = require ("electron"),
    yargs    = require ("yargs"),
    path     = require ("path"),
+   url      = require ("url"),
    fs       = require ("fs"),
    DEBUG    = false;
 
@@ -104,7 +105,7 @@ async function generate (argv)
    const
       canvas   = document .getElementById ("browser"),
       Browser  = canvas .browser,
-      input    = path .resolve (args .cwd, args .input),
+      input    = new URL (args .input, url .pathToFileURL (path .join (args .cwd, "/"))),
       output   = path .resolve (args .cwd, args .output),
       size     = args .size .split ("x"),
       width    = parseInt (size [0]) || 1280,

@@ -130,6 +130,8 @@ async function generate (argv)
    const blob = await generateImage (canvas, mimeType, args .quality);
 
    fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
+
+   Browser .currentScene .dispose ();
 }
 
 async function generateImage (canvas, mimeType, quality)

@@ -131,7 +131,7 @@ async function generate (argv)
 
    fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
 
-   Browser .currentScene .dispose ();
+   Browser .dispose ();
 }
 
 async function generateImage (canvas, mimeType, quality)

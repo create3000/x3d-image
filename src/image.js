@@ -47,11 +47,6 @@ async function generate (argv)
       console .error (msg);
       process .exit (1);
    })
-   .option ("cwd",
-   {
-      type: "string",
-   })
-   .hide ("cwd")
    .option ("input",
    {
       type: "string",
@@ -105,8 +100,8 @@ async function generate (argv)
    const
       canvas   = document .getElementById ("browser"),
       Browser  = canvas .browser,
-      input    = new URL (args .input, url .pathToFileURL (path .join (args .cwd, "/"))),
-      output   = path .resolve (args .cwd, args .output),
+      input    = new URL (args .input, url .pathToFileURL (path .join (process .cwd (), "/"))),
+      output   = path .resolve (process .cwd (), args .output),
       size     = args .size .split ("x"),
       width    = parseInt (size [0]) || 1280,
       height   = parseInt (size [1]) || 720,

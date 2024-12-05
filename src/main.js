@@ -6,6 +6,7 @@ const
    colors   = require ("colors");
 
 process .argv = process .argv .concat (JSON .parse (atob (process .argv .pop ())));
+process .chdir (process .argv .pop ());
 
 process .env .ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 // process .env .ELECTRON_ENABLE_LOGGING            = 1;

@@ -36,9 +36,9 @@ async function main (argv)
 
 async function generate (argv)
 {
-   const args = yargs (argv)
+   const args = yargs (argv .slice (2))
    .scriptName ("x3d-image")
-   .usage ("$0 args")
+   .usage ("$0 [options] input-file output-file")
    .command ("x3d-image", "Render image files from X3D")
    .version (pkg .version)
    .alias ("v", "version")
@@ -51,15 +51,15 @@ async function generate (argv)
    {
       type: "string",
       alias: "i",
-      description: "Set input file.",
-      demandOption: true,
+      description: "Set input file(s). If there are less input files than output files, the last input file is uses for the remaining output files.",
+      array: true,
    })
    .option ("output",
    {
       type: "string",
       alias: "o",
-      description: "Set output file. To output it to stdout use only the extension, e.g. '.x3dv'.",
-      demandOption: true,
+      description: "Set output file(s). To output it to stdout use only the extension, e.g. '.x3dv'.",
+      array: true,
    })
    .option ("size",
    {
@@ -97,34 +97,54 @@ async function generate (argv)
    if (args .help)
       return;
 
+   args .input  ??= [ ];
+   args .output ??= [ ];
+
+   if (args .input .length === 0 && args .output .length === 0)
+   {
+      if (args ._ .length % 2 === 0)
+      {
+         for (let i = 0; i < args ._ .length; i += 2)
+         {
+            args .input  .push (args ._ [i + 0]);
+            args .output .push (args ._ [i + 1]);
+         }
+      }
+   }
    const
       canvas   = document .getElementById ("browser"),
       Browser  = canvas .browser,
-      input    = new URL (args .input, url .pathToFileURL (path .join (process .cwd (), "/"))),
-      output   = path .resolve (process .cwd (), args .output),
       size     = args .size .split ("x"),
       width    = parseInt (size [0]) || 1280,
-      height   = parseInt (size [1]) || 720,
-      mimeType = mimeTypeFromPath (output);
+      height   = parseInt (size [1]) || 720;
 
    Browser .setBrowserOption ("PrimitiveQuality", "HIGH");
    Browser .setBrowserOption ("TextureQuality",   "HIGH");
 
    await Browser .resize (width, height);
-   await Browser .loadURL (new X3D .MFString (input));
 
-   if (args ["view-all"])
+   for (const i of args .output .keys ())
    {
-      Browser .viewAll (0);
-      await Browser .nextFrame ();
+      const
+         input    = new URL (args .input [i] ?? args .input .at (-1), url .pathToFileURL (path .join (process .cwd (), "/"))),
+         output   = path .resolve (process .cwd (), args .output [i]),
+         mimeType = mimeTypeFromPath (output);
+
+      await Browser .loadURL (new X3D .MFString (input));
+
+      if (args ["view-all"])
+      {
+         Browser .viewAll (0);
+         await Browser .nextFrame ();
+      }
+
+      if (args .delay)
+         await sleep (args .delay * 1000);
+
+      const blob = await generateImage (canvas, mimeType, args .quality);
+
+      fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
    }
-
-   if (args .delay)
-      await sleep (args .delay * 1000);
-
-   const blob = await generateImage (canvas, mimeType, args .quality);
-
-   fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
 
    Browser .dispose ();
 }

@@ -10,19 +10,19 @@ Render image files from X3D.
 
 You can run *x3d-image* without installing it using **npx**:
 
-**npx x3d-image** \[options\]
+**npx x3d-image** \[options\] input-file output-file [input-file output-file ...]
 
 ## Options
 
 **x3d-image** interprets the following options when it is invoked:
 
-### -i *file*
+### -i *file* ...
 
-Set input file. This can be either a local file path or a URL.
+Set input file(s). This can be either a local file path or a URL. If there are less input files than output files, the last input file is uses for the remaining output files.
 
-### -o *file*
+### -o *file* ...
 
-Set output file.
+Set output file(s).
 
 ### -s WIDTHxHEIGHT
 
@@ -74,7 +74,13 @@ Show help.
 Render an JPEG image from X3D with size 1600x900.
 
 ```sh
-$ npx x3d-image -s 1600x900 -i file.x3d -o file.jpg
+$ npx x3d-image -s 1600x900 file.x3d file.jpg
+```
+
+Render an two PNG image from two X3D files.
+
+```sh
+$ npx x3d-image -s 1600x900 file1.x3d file1.png file2.x3d file2.png
 ```
 
 ## See Also

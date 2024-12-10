@@ -38,7 +38,7 @@ async function generate (argv)
 {
    const args = yargs (argv .slice (2))
    .scriptName ("x3d-image")
-   .usage ("$0 [options] input-file output-file")
+   .usage ("$0 [options] input-file output-file [input-file output-file ...]")
    .command ("x3d-image", "Render image files from X3D")
    .version (pkg .version)
    .alias ("v", "version")

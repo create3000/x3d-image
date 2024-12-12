@@ -129,8 +129,8 @@ async function generate (argv)
       }
    }
    const
-      canvas   = document .getElementById ("browser"),
-      Browser  = canvas .browser;
+      canvas  = document .getElementById ("browser"),
+      Browser = canvas .browser;
 
    Browser .setBrowserOption ("PrimitiveQuality", "HIGH");
    Browser .setBrowserOption ("TextureQuality",   "HIGH");

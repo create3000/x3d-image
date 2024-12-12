@@ -138,34 +138,39 @@ async function generate (argv)
    for (const i of args .output .keys ())
    {
       const
-         size   = (args .size [i] ?? args .size .at (-1)) .split ("x"),
+         size   = arg (args .size, i) .split ("x"),
          width  = parseInt (size [0]) || 1280,
          height = parseInt (size [1]) || 720;
 
       await Browser .resize (width, height);
 
       const
-         input    = new URL (args .input [i] ?? args .input .at (-1), url .pathToFileURL (path .join (process .cwd (), "/"))),
+         input    = new URL (arg (args .input, i), url .pathToFileURL (path .join (process .cwd (), "/"))),
          output   = path .resolve (process .cwd (), args .output [i]),
          mimeType = mimeTypeFromPath (output);
 
       await Browser .loadURL (new X3D .MFString (input));
 
-      if (args ["view-all"] [i] ?? args ["view-all"] .at (-1))
+      if (arg (args ["view-all"], i))
       {
          Browser .viewAll (0);
          await Browser .nextFrame ();
       }
 
-      if (args .delay [i] ?? args .delay .at (-1))
-         await sleep ((args .delay [i] ?? args .delay .at (-1)) * 1000);
+      if (arg (args .delay, i))
+         await sleep (arg (args .delay, i) * 1000);
 
-      const blob = await generateImage (canvas, mimeType, args .quality [i] ?? args .quality .at (-1));
+      const blob = await generateImage (canvas, mimeType, arg (args .quality, i));
 
       fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
    }
 
    Browser .dispose ();
+}
+
+function arg (arg, i)
+{
+   return arg [i] ?? arg .at (-1);
 }
 
 async function generateImage (canvas, mimeType, quality)

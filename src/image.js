@@ -130,15 +130,10 @@ async function generate (argv)
    }
    const
       canvas   = document .getElementById ("browser"),
-      Browser  = canvas .browser,
-      size     = (args .size [i] ?? args .size .at (-1)) .split ("x"),
-      width    = parseInt (size [0]) || 1280,
-      height   = parseInt (size [1]) || 720;
+      Browser  = canvas .browser;
 
    Browser .setBrowserOption ("PrimitiveQuality", "HIGH");
    Browser .setBrowserOption ("TextureQuality",   "HIGH");
-
-   await Browser .resize (width, height);
 
    for (const i of args .output .keys ())
    {
@@ -148,6 +143,13 @@ async function generate (argv)
          mimeType = mimeTypeFromPath (output);
 
       await Browser .loadURL (new X3D .MFString (input));
+
+      const
+         size   = (args .size [i] ?? args .size .at (-1)) .split ("x"),
+         width  = parseInt (size [0]) || 1280,
+         height = parseInt (size [1]) || 720;
+
+      await Browser .resize (width, height);
 
       if (args ["view-all"] [i] ?? args ["view-all"] .at (-1))
       {

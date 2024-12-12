@@ -138,18 +138,18 @@ async function generate (argv)
    for (const i of args .output .keys ())
    {
       const
-         input    = new URL (args .input [i] ?? args .input .at (-1), url .pathToFileURL (path .join (process .cwd (), "/"))),
-         output   = path .resolve (process .cwd (), args .output [i]),
-         mimeType = mimeTypeFromPath (output);
-
-      await Browser .loadURL (new X3D .MFString (input));
-
-      const
          size   = (args .size [i] ?? args .size .at (-1)) .split ("x"),
          width  = parseInt (size [0]) || 1280,
          height = parseInt (size [1]) || 720;
 
       await Browser .resize (width, height);
+
+      const
+         input    = new URL (args .input [i] ?? args .input .at (-1), url .pathToFileURL (path .join (process .cwd (), "/"))),
+         output   = path .resolve (process .cwd (), args .output [i]),
+         mimeType = mimeTypeFromPath (output);
+
+      await Browser .loadURL (new X3D .MFString (input));
 
       if (args ["view-all"] [i] ?? args ["view-all"] .at (-1))
       {

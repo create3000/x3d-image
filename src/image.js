@@ -81,27 +81,32 @@ async function generate (argv)
       type: "string",
       alias: "s",
       description: "Set image size in pixels.",
-      default: "1280x720",
+      array: true,
+      default: ["1280x720"],
    })
    .option ("quality",
    {
       type: "number",
       alias: "q",
       description: "A Number between 0 and 1 indicating the image quality to be used when creating images using file formats that support lossy compression (such as JPEG).",
-      default: 1,
+      array: true,
+      default: [1],
    })
    .option ("delay",
    {
       type: "number",
       alias: "d",
       description: "Wait the specified number of seconds before generating the image.",
-      default: 0,
+      array: true,
+      default: [0],
    })
    .option ("view-all",
    {
       type: "boolean",
       alias: "a",
       description: "Modify the current view so that all objects fit in view volume.",
+      array: true,
+      default: [false],
    })
    .help ()
    .alias ("help", "h") .argv;
@@ -126,7 +131,7 @@ async function generate (argv)
    const
       canvas   = document .getElementById ("browser"),
       Browser  = canvas .browser,
-      size     = args .size .split ("x"),
+      size     = (args .size [i] ?? args .size .at (-1)) .split ("x"),
       width    = parseInt (size [0]) || 1280,
       height   = parseInt (size [1]) || 720;
 
@@ -144,16 +149,16 @@ async function generate (argv)
 
       await Browser .loadURL (new X3D .MFString (input));
 
-      if (args ["view-all"])
+      if (args ["view-all"] [i] ?? args ["view-all"] .at (-1))
       {
          Browser .viewAll (0);
          await Browser .nextFrame ();
       }
 
-      if (args .delay)
-         await sleep (args .delay * 1000);
+      if (args .delay [i] ?? args .delay .at (-1))
+         await sleep ((args .delay [i] ?? args .delay .at (-1)) * 1000);
 
-      const blob = await generateImage (canvas, mimeType, args .quality);
+      const blob = await generateImage (canvas, mimeType, args .quality [i] ?? args .quality .at (-1));
 
       fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
    }

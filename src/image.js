@@ -39,9 +39,20 @@ async function generate (argv)
    const args = yargs (argv .slice (2))
    .scriptName ("x3d-image")
    .usage ("$0 [options] input-file output-file [input-file output-file ...]")
+   .wrap (yargs .terminalWidth ())
    .command ("Render image files from X3D")
    .version (pkg .version)
    .alias ("v", "version")
+   .example ([
+      [
+         "npx x3d-image -s 1600x900 file.x3d file.jpg",
+         "Render an JPEG image from X3D with size 1600x900."
+      ],
+      [
+         "npx x3d-image -s 1600x900 file1.x3d file1.png file2.x3d file2.png",
+         "Render an two PNG image from two X3D files."
+      ],
+   ])
    .fail ((msg, error, yargs) =>
    {
       console .error (msg);

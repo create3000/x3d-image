@@ -114,7 +114,7 @@ async function generate (argv)
       ],
       [
          "npx x3d-image -s 1600x900 -i file1.x3d -o file1.png -i file2.x3d -o file2.png",
-         "Render an two PNG images from two X3D files."
+         "Render two PNG images from two X3D files."
       ],
    ])
    .help ()

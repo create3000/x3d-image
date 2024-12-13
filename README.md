@@ -81,7 +81,7 @@ Render a JPEG image from X3D with size 1600x900.
 $ npx x3d-image -s 1600x900 -i file.x3d -o file.jpg
 ```
 
-Render an two PNG images from two X3D files.
+Render two PNG images from two X3D files.
 
 ```sh
 $ npx x3d-image -s 1600x900 -i file1.x3d -o file1.png -i file2.x3d -o file2.png

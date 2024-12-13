@@ -84,7 +84,7 @@ $ npx x3d-image -s 1600x900 file.x3d file.jpg
 Render an two PNG image from two X3D files.
 
 ```sh
-$ npx x3d-image -s 1600x900 file1.x3d file1.png file2.x3d file2.png
+$ npx x3d-image -s 1600x900 -i file1.x3d -o file1.png -i file2.x3d -o file2.png
 ```
 
 ## See Also

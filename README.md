@@ -40,6 +40,10 @@ Wait the specified number of seconds before generating the image.
 
 Modify the current view so that all objects fit in view volume.
 
+### -e
+
+Add a EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
+
 ### -v
 
 Show version.

@@ -108,6 +108,14 @@ async function generate (argv)
       array: true,
       default: [false],
    })
+   .option ("environment-light",
+   {
+      type: "boolean",
+      alias: "e",
+      description: "Add a EnvironmentLight node to scene.",
+      array: true,
+      default: [false],
+   })
    .help ()
    .alias ("help", "h") .argv;
 
@@ -130,10 +138,10 @@ async function generate (argv)
    }
    const
       canvas  = document .getElementById ("browser"),
-      Browser = canvas .browser;
+      browser = canvas .browser;
 
-   Browser .setBrowserOption ("PrimitiveQuality", "HIGH");
-   Browser .setBrowserOption ("TextureQuality",   "HIGH");
+   browser .setBrowserOption ("PrimitiveQuality", "HIGH");
+   browser .setBrowserOption ("TextureQuality",   "HIGH");
 
    for (const i of args .output .keys ())
    {
@@ -142,19 +150,22 @@ async function generate (argv)
          width  = parseInt (size [0]) || 1280,
          height = parseInt (size [1]) || 720;
 
-      await Browser .resize (width, height);
+      await browser .resize (width, height);
 
       const
          input    = new URL (arg (args .input, i), url .pathToFileURL (path .join (process .cwd (), "/"))),
          output   = path .resolve (process .cwd (), args .output [i]),
          mimeType = mimeTypeFromPath (output);
 
-      await Browser .loadURL (new X3D .MFString (input));
+      await browser .loadURL (new X3D .MFString (input));
+
+      if (arg (args ["environment-light"], i))
+         await addEnvironmentLight (browser, browser .currentScene, "CANNON");
 
       if (arg (args ["view-all"], i))
       {
-         Browser .viewAll (0);
-         await Browser .nextFrame ();
+         browser .viewAll (0);
+         await browser .nextFrame ();
       }
 
       if (arg (args .delay, i))
@@ -165,7 +176,7 @@ async function generate (argv)
       fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
    }
 
-   Browser .dispose ();
+   browser .dispose ();
 }
 
 function arg (arg, i)
@@ -181,6 +192,8 @@ async function generateImage (canvas, mimeType, quality)
    });
 }
 
+const sleep = delay => new Promise (resolve => setTimeout (resolve, delay));
+
 function mimeTypeFromPath (filename)
 {
    switch (path .extname (filename) .toLowerCase ())
@@ -193,4 +206,66 @@ function mimeTypeFromPath (filename)
    }
 }
 
-const sleep = delay => new Promise (resolve => setTimeout (resolve, delay));
+const EnvironmentLights = new Map ([
+   ["CANNON",    "cannon-exterior:2"],
+   ["HELIPAD",   "helipad:1"],
+   ["FOOTPRINT", "footprint-court:1"],
+]);
+
+let environmentLight = null;
+
+async function addEnvironmentLight (browser, scene, name)
+{
+   browser .endUpdate ();
+
+   if (!environmentLight)
+   {
+      scene .addComponent (browser .getComponent ("CubeMapTexturing"));
+
+      await browser .loadComponents (scene);
+
+      environmentLight = scene .createNode ("EnvironmentLight");
+
+      const
+         diffuseTexture    = scene .createNode ("ImageCubeMapTexture"),
+         specularTexture   = scene .createNode ("ImageCubeMapTexture"),
+         textureProperties = scene .createNode ("TextureProperties");
+
+      textureProperties .generateMipMaps     = true;
+      textureProperties .minificationFilter  = "NICEST";
+      textureProperties .magnificationFilter = "NICEST";
+
+      diffuseTexture  .textureProperties = textureProperties;
+      specularTexture .textureProperties = textureProperties;
+
+      environmentLight .intensity       = 1;
+      environmentLight .color           = new X3D .SFColor (1, 1, 1);
+      environmentLight .diffuseTexture  = diffuseTexture;
+      environmentLight .specularTexture = specularTexture;
+   }
+
+   const [image, intensity] = (EnvironmentLights .get (name)
+      ?? EnvironmentLights .get ("CANNON")) .split (":");
+
+   environmentLight .intensity = parseFloat (intensity);
+
+   const
+      fileURL     = new URL (`images/${image}`, url .pathToFileURL (path .join (__dirname, "/"))),
+      diffuseURL  = new X3D .MFString (`${fileURL}-diffuse.avif`,  `${fileURL}-diffuse.jpg`),
+      specularURL = new X3D .MFString (`${fileURL}-specular.avif`, `${fileURL}-specular.jpg`);
+
+   if (!environmentLight .diffuseTexture .url .equals (diffuseURL))
+      environmentLight .diffuseTexture .url = diffuseURL;
+
+   if (!environmentLight .specularTexture .url .equals (specularURL))
+      environmentLight .specularTexture .url = specularURL;
+
+   scene .addRootNode (environmentLight);
+
+   await Promise .all ([
+      environmentLight .diffuseTexture  .getValue () .requestImmediateLoad (),
+      environmentLight .specularTexture .getValue () .requestImmediateLoad (),
+   ]);
+
+   browser .beginUpdate ();
+}

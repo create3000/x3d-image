@@ -262,6 +262,7 @@ async function addEnvironmentLight (browser, scene, name)
       environmentLight .specularTexture .url = specularURL;
 
    scene .addRootNode (environmentLight);
+   await browser .nextFrame ();
 
    await Promise .all ([
       environmentLight .diffuseTexture  .getValue () .requestImmediateLoad (),

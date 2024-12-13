@@ -87,6 +87,12 @@ Render two PNG images from two X3D files.
 $ npx x3d-image -s 1600x900 -i file1.x3d -o file1.png -i file2.x3d -o file2.png
 ```
 
+Render image of glTF file with view-all end environment light.
+
+```sh
+$ npx x3d-image -a -e CANNON -i file.gltf -o file.png
+```
+
 ## See Also
 
 x3d-image is based on [X_ITE](https://create3000.github.io/x_ite/), so check it out.

@@ -43,16 +43,6 @@ async function generate (argv)
    .command ("Render image files from X3D")
    .version (pkg .version)
    .alias ("v", "version")
-   .example ([
-      [
-         "npx x3d-image -s 1600x900 file.x3d file.jpg",
-         "Render an JPEG image from X3D with size 1600x900."
-      ],
-      [
-         "npx x3d-image -s 1600x900 -i file1.x3d -o file1.png -i file2.x3d -o file2.png",
-         "Render an two PNG image from two X3D files."
-      ],
-   ])
    .fail ((msg, error, yargs) =>
    {
       console .error (msg);
@@ -110,12 +100,23 @@ async function generate (argv)
    })
    .option ("environment-light",
    {
-      type: "boolean",
+      type: "string",
       alias: "e",
       description: "Add a EnvironmentLight node to scene.",
+      choices: ["CANNON", "HELIPAD", "FOOTPRINT"],
       array: true,
-      default: [false],
+      default: [ ],
    })
+   .example ([
+      [
+         "npx x3d-image -s 1600x900 -i file.x3d -o file.jpg",
+         "Render an JPEG image from X3D with size 1600x900."
+      ],
+      [
+         "npx x3d-image -s 1600x900 -i file1.x3d -o file1.png -i file2.x3d -o file2.png",
+         "Render an two PNG image from two X3D files."
+      ],
+   ])
    .help ()
    .alias ("help", "h") .argv;
 
@@ -160,7 +161,7 @@ async function generate (argv)
       await browser .loadURL (new X3D .MFString (input));
 
       if (arg (args ["environment-light"], i))
-         await addEnvironmentLight (browser, browser .currentScene, "CANNON");
+         await addEnvironmentLight (browser, browser .currentScene, arg (args ["environment-light"], i));
 
       if (arg (args ["view-all"], i))
       {

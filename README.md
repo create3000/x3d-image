@@ -40,9 +40,9 @@ Wait the specified number of seconds before generating the image.
 
 Modify the current view so that all objects fit in view volume.
 
-### -e
+### -e *[**CANNON**, HELIPAD, FOOTPRINT]*
 
-Add a EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
+Add a EnvironmentLight node to scene, default is "CANNON". Useful when rendering glTF files with PhysicalMaterial nodes.
 
 ### -v
 

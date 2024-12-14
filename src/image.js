@@ -102,7 +102,7 @@ async function generate (argv)
    {
       type: "string",
       alias: "e",
-      description: `Add a EnvironmentLight node to scene, default is "CANNON". Useful when rendering glTF files with PhysicalMaterial nodes.`,
+      description: `Add an EnvironmentLight node to scene, default is "CANNON". Useful when rendering glTF files with PhysicalMaterial nodes.`,
       choices: ["CANNON", "HELIPAD", "FOOTPRINT"],
       array: true,
       default: [ ],

@@ -42,7 +42,7 @@ Modify the current view so that all objects fit in view volume.
 
 ### -e *[**CANNON**, HELIPAD, FOOTPRINT]*
 
-Add a EnvironmentLight node to scene, default is "CANNON". Useful when rendering glTF files with PhysicalMaterial nodes.
+Add an EnvironmentLight node to scene, default is "CANNON". Useful when rendering glTF files with PhysicalMaterial nodes.
 
 ### -v
 

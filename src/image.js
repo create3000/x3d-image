@@ -61,7 +61,7 @@ async function generate (argv)
    {
       type: "string",
       alias: "o",
-      description: "Set output file(s). To output it to stdout use only the extension, e.g. '.x3dv'.",
+      description: "Set output file(s). This can be either a *.png or *.jpg file.",
       array: true,
       default: [ ],
       implies: "input",

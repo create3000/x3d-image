@@ -16,13 +16,13 @@ You can run *x3d-image* without installing it using **npx**:
 
 **x3d-image** interprets the following options when it is invoked:
 
-### -i *file* ...
+### -i *file(s)* ...
 
 Set input file(s). This can be either a local file path or a URL. If there are less input files than output files, the last input file is used for the remaining output files.
 
-### -o *file* ...
+### -o *file(s)* ...
 
-Set output file(s).
+Set output file(s). This can be either a PNG or JPEG file.
 
 ### -s WIDTHxHEIGHT
 

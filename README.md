@@ -10,7 +10,7 @@ Render image files from X3D.
 
 You can run *x3d-image* without installing it using **npx**:
 
-**npx x3d-image** \[options\] input-file output-file [input-file output-file ...]
+**npx x3d-image** \[options\] -i input-file -o output-file [-i input-file -o output-file ...]
 
 ## Options
 

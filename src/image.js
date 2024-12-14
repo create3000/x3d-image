@@ -38,7 +38,7 @@ async function generate (argv)
 {
    const args = yargs (argv .slice (2))
    .scriptName ("x3d-image")
-   .usage ("$0 [options] input-file output-file [input-file output-file ...]")
+   .usage ("$0 [options] -i input-file -o output-file [-i input-file -o output-file ...]")
    .wrap (yargs .terminalWidth ())
    .command ("Render image files from X3D")
    .version (pkg .version)
@@ -130,17 +130,6 @@ async function generate (argv)
    if (args .help)
       return;
 
-   if (args .input .length === 0 && args .output .length === 0)
-   {
-      if (args ._ .length % 2 === 0)
-      {
-         for (let i = 0; i < args ._ .length; i += 2)
-         {
-            args .input  .push (args ._ [i + 0]);
-            args .output .push (args ._ [i + 1]);
-         }
-      }
-   }
    const
       canvas  = document .getElementById ("browser"),
       browser = canvas .browser;

@@ -137,6 +137,9 @@ async function generate (argv)
    browser .setBrowserOption ("PrimitiveQuality", "HIGH");
    browser .setBrowserOption ("TextureQuality",   "HIGH");
 
+   if (!args .input .length)
+      console .warn ("No input files specified.");
+
    for (const i of args .output .keys ())
    {
       const

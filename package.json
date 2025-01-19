@@ -52,7 +52,7 @@
   ],
   "dependencies": {
     "colors": "^1.4.0",
-    "electron": "^33.3.1",
+    "electron": "^34.0.0",
     "x_ite": "^11.0.4",
     "yargs": "^17.7.2"
   },

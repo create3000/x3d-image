@@ -18,6 +18,7 @@ You can run *x3d-image* without installing it using **npx**:
 
 Key Features:
 
+* Run *x3d-image* with `npx x3d-image ...` directly from npm without installing it.
 * Flexible Input and Output: Accepts multiple input files, either from local paths or URLs, and produces corresponding image outputs.
 * Customizable Image Dimensions: Allows specification of image size with the -s WIDTHxHEIGHT option; the default size is 1280x720 pixels.
 * Adjustable Quality Settings: For lossy formats like JPEG, users can set the desired quality level using the -q option, with values ranging between 0 and 1.

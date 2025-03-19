@@ -12,6 +12,19 @@ You can run *x3d-image* without installing it using **npx**:
 
 **npx x3d-image** \[options\] -i input-file -o output-file [-i input-file -o output-file ...]
 
+## Overview
+
+*x3d-image* is a command-line tool that renders image files from X3D (Extensible 3D) and other 3D file formats. It allows users to convert 3D scenes into 2D images, supporting various input formats such as X3D (XML, JSON, Classic VRML), VRML, glTF, OBJ, STL, PLY, and SVG. The output can be in PNG or JPEG formats.
+
+Key Features:
+
+* Flexible Input and Output: Accepts multiple input files, either from local paths or URLs, and produces corresponding image outputs.
+* Customizable Image Dimensions: Allows specification of image size with the -s WIDTHxHEIGHT option; the default size is 1280x720 * pixels.
+* Adjustable Quality Settings: For lossy formats like JPEG, users can set the desired quality level using the -q option, with values * ranging between 0 and 1.
+* Rendering Delay: Provides an option to delay rendering by a specified number of seconds using the -d option.
+* View Adjustment: The -a option modifies the current view to ensure all objects fit within the view volume.
+* Environmental Lighting: Users can add an EnvironmentLight node to the scene with the -e option, choosing from presets like "CANNON," "HELIPAD," or "FOOTPRINT," which is particularly useful when rendering glTF files with PhysicalMaterial nodes.
+
 ## Options
 
 **x3d-image** interprets the following options when it is invoked:

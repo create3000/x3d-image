@@ -134,6 +134,7 @@ async function generate (argv)
       canvas  = document .getElementById ("browser"),
       browser = canvas .browser;
 
+   browser .setBrowserOption ("Mute",             true);
    browser .setBrowserOption ("PrimitiveQuality", "HIGH");
    browser .setBrowserOption ("TextureQuality",   "HIGH");
 

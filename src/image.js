@@ -154,7 +154,7 @@ async function generate (argv)
          output   = path .resolve (process .cwd (), args .output [i]),
          mimeType = mimeTypeFromPath (output);
 
-      await browser .loadURL (new X3D .MFString (input));
+      await browser .loadURL (new X3D .MFString (input)) .catch (Function .prototype);
 
       if (arg (args ["environment-light"], i))
          await addEnvironmentLight (browser, browser .currentScene, arg (args ["environment-light"], i));

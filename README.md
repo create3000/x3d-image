@@ -54,6 +54,10 @@ Wait the specified number of seconds before generating the image.
 
 Modify the current view so that all objects fit in view volume.
 
+## -b
+
+Set background to transparent. Use PNG as output image format.
+
 ### -e *[**CANNON**, HELIPAD, FOOTPRINT]*
 
 Add an EnvironmentLight node to scene, default is "CANNON". Useful when rendering glTF files with PhysicalMaterial nodes.

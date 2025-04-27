@@ -98,6 +98,14 @@ async function generate (argv)
       array: true,
       default: [false],
    })
+   .option ("background",
+   {
+      type: "boolean",
+      alias: "b",
+      description: `Set background to transparent. Use PNG as output image format.`,
+      array: true,
+      default: [false],
+   })
    .option ("environment-light",
    {
       type: "string",
@@ -157,6 +165,9 @@ async function generate (argv)
 
       await browser .loadURL (new X3D .MFString (input)) .catch (Function .prototype);
 
+      if (arg (args .background, i))
+         await addBackground (browser, browser .currentScene);
+
       if (arg (args ["environment-light"], i))
          await addEnvironmentLight (browser, browser .currentScene, arg (args ["environment-light"], i));
 
@@ -210,6 +221,34 @@ const EnvironmentLights = new Map ([
    ["FOOTPRINT", "footprint-court:1"],
 ]);
 
+let background = null;
+
+async function addBackground (browser, scene)
+{
+   console .log ("Adding background...");
+
+   browser .endUpdate ();
+
+   if (!background)
+   {
+      scene .addComponent (browser .getComponent ("EnvironmentalEffects"));
+
+      await browser .loadComponents (scene);
+
+      background = scene .createNode ("Background");
+
+      background .transparency = 1;
+   }
+
+   scene .addRootNode (background);
+
+   background .set_bind = true;
+
+   await browser .nextFrame ();
+
+   browser .beginUpdate ();
+}
+
 let environmentLight = null;
 
 async function addEnvironmentLight (browser, scene, name)
@@ -259,9 +298,9 @@ async function addEnvironmentLight (browser, scene, name)
       environmentLight .specularTexture .url = specularURL;
 
    scene .addRootNode (environmentLight);
-   await browser .nextFrame ();
 
    await Promise .all ([
+      browser .nextFrame (),
       environmentLight .diffuseTexture  .getValue () .requestImmediateLoad (),
       environmentLight .specularTexture .getValue () .requestImmediateLoad (),
    ]);

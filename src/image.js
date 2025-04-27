@@ -102,7 +102,7 @@ async function generate (argv)
    {
       type: "string",
       alias: "b",
-      description: `Set background to transparent. Use PNG as output image format.`,
+      description: `Set background to specified color. Color can be any CSS color including transparent ones. Use PNG as output image format for transparent backgrounds.`,
       array: true,
       default: [""],
    })
@@ -236,11 +236,13 @@ async function addBackground (browser, scene, color)
       background .transparency = 1;
    }
 
-   const c = new X3D .SFColorRGBA () .fromString (color);
+   const c = new X3D .SFColorRGBA ();
+
+   c .fromString (color, scene);
 
    background .set_bind     = true;
    background .skyColor     = [c .r, c .g, c .b];
-   background .transparency = c .a;
+   background .transparency = 1 - c .a;
 
    scene .addRootNode (background);
 

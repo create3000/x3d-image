@@ -102,7 +102,7 @@ async function generate (argv)
    {
       type: "string",
       alias: "b",
-      description: `Set background to specified color. Color can be any X3D or CSS RGBA color. Use PNG as output image format for transparent backgrounds.`,
+      description: `Set background to specified color. Color can be any X3D RGBA color or any CSS color. Use PNG as output image format for transparent backgrounds.`,
       array: true,
       default: [""],
    })
@@ -160,6 +160,8 @@ async function generate (argv)
          height   = parseInt (size [1]) || 720,
          color    = arg (args .background, i);
 
+      browser .endUpdate ();
+
       await browser .resize (width, height);
       await browser .loadURL (new X3D .MFString (input)) .catch (Function .prototype);
 
@@ -174,6 +176,8 @@ async function generate (argv)
          browser .viewAll (0);
          await browser .nextFrame ();
       }
+
+      browser .beginUpdate ();
 
       if (arg (args .delay, i))
          await sleep (arg (args .delay, i) * 1000);
@@ -223,8 +227,6 @@ let background = null;
 
 async function addBackground (browser, scene, color)
 {
-   browser .endUpdate ();
-
    if (!background)
    {
       scene .addComponent (browser .getComponent ("EnvironmentalEffects"));
@@ -247,16 +249,12 @@ async function addBackground (browser, scene, color)
    scene .addRootNode (background);
 
    await browser .nextFrame ();
-
-   browser .beginUpdate ();
 }
 
 let environmentLight = null;
 
 async function addEnvironmentLight (browser, scene, name)
 {
-   browser .endUpdate ();
-
    if (!environmentLight)
    {
       scene .addComponent (browser .getComponent ("CubeMapTexturing"));
@@ -306,6 +304,4 @@ async function addEnvironmentLight (browser, scene, name)
       environmentLight .diffuseTexture  .getValue () .requestImmediateLoad (),
       environmentLight .specularTexture .getValue () .requestImmediateLoad (),
    ]);
-
-   browser .beginUpdate ();
 }

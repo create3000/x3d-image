@@ -56,7 +56,7 @@ Modify the current view so that all objects fit in view volume.
 
 ### -b *color*
 
-Set background to specified color. Color can be any CSS color including transparent ones. Use PNG as output image format for transparent backgrounds.
+Set background to specified color. Color can be any X3D or CSS RGBA color. Use PNG as output image format for transparent backgrounds.
 
 ### -e *[**CANNON**, HELIPAD, FOOTPRINT]*
 

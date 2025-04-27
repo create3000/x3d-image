@@ -54,7 +54,7 @@ Wait the specified number of seconds before generating the image.
 
 Modify the current view so that all objects fit in view volume.
 
-## -b
+### -b
 
 Set background to transparent. Use PNG as output image format.
 

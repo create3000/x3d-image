@@ -100,11 +100,11 @@ async function generate (argv)
    })
    .option ("background",
    {
-      type: "boolean",
+      type: "string",
       alias: "b",
       description: `Set background to transparent. Use PNG as output image format.`,
       array: true,
-      default: [false],
+      default: [""],
    })
    .option ("environment-light",
    {
@@ -152,21 +152,19 @@ async function generate (argv)
    for (const i of args .output .keys ())
    {
       const
-         size   = arg (args .size, i) .split ("x"),
-         width  = parseInt (size [0]) || 1280,
-         height = parseInt (size [1]) || 720;
-
-      await browser .resize (width, height);
-
-      const
          input    = new URL (arg (args .input, i), url .pathToFileURL (path .join (process .cwd (), "/"))),
          output   = path .resolve (process .cwd (), args .output [i]),
-         mimeType = mimeTypeFromPath (output);
+         mimeType = mimeTypeFromPath (output),
+         size     = arg (args .size, i) .split ("x"),
+         width    = parseInt (size [0]) || 1280,
+         height   = parseInt (size [1]) || 720,
+         color    = arg (args .background, i);
 
+      await browser .resize (width, height);
       await browser .loadURL (new X3D .MFString (input)) .catch (Function .prototype);
 
-      if (arg (args .background, i))
-         await addBackground (browser, browser .currentScene);
+      if (color .length)
+         await addBackground (browser, browser .currentScene, color);
 
       if (arg (args ["environment-light"], i))
          await addEnvironmentLight (browser, browser .currentScene, arg (args ["environment-light"], i));
@@ -223,7 +221,7 @@ const EnvironmentLights = new Map ([
 
 let background = null;
 
-async function addBackground (browser, scene)
+async function addBackground (browser, scene, color)
 {
    browser .endUpdate ();
 
@@ -238,9 +236,13 @@ async function addBackground (browser, scene)
       background .transparency = 1;
    }
 
-   scene .addRootNode (background);
+   const c = new X3D .SFColorRGBA () .fromString (color);
 
-   background .set_bind = true;
+   background .set_bind     = true;
+   background .skyColor     = [c .r, c .g, c .b];
+   background .transparency = c .a;
+
+   scene .addRootNode (background);
 
    await browser .nextFrame ();
 

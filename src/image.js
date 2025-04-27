@@ -225,8 +225,6 @@ let background = null;
 
 async function addBackground (browser, scene)
 {
-   console .log ("Adding background...");
-
    browser .endUpdate ();
 
    if (!background)

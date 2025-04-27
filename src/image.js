@@ -104,7 +104,7 @@ async function generate (argv)
       alias: "b",
       description: `Set background to specified color. Color can be any X3D RGBA color or any CSS color. Use PNG as output image format for transparent backgrounds.`,
       array: true,
-      default: [""],
+      default: [ ],
    })
    .option ("environment-light",
    {
@@ -158,7 +158,7 @@ async function generate (argv)
          size     = arg (args .size, i) .split ("x"),
          width    = parseInt (size [0]) || 1280,
          height   = parseInt (size [1]) || 720,
-         color    = arg (args .background, i);
+         color    = arg (args .background, i) ?? "";
 
       browser .endUpdate ();
 

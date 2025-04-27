@@ -60,7 +60,7 @@ Set background to specified color. Color can be any X3D RGBA color or any CSS co
 
 ### -e *[**CANNON**, HELIPAD, FOOTPRINT]*
 
-Add an EnvironmentLight node to scene, default is "CANNON". Useful when rendering glTF files with PhysicalMaterial nodes.
+Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
 
 ### -v
 

@@ -50,6 +50,10 @@ Wait the specified number of seconds before generating the image.
 
 Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
 
+### -h
+
+Show help.
+
 ### -i *file(s)* ...
 
 Set input file(s). This can be either a local file path or a URL. If there are less input files than output files, the last input file is used for the remaining output files.
@@ -86,17 +90,13 @@ Set image size in pixels, default is '1280x720'.
 
 Controls how Text.length and Text.maxExtent are handled. Either by adjusting char spacing or by scaling text letters.
 
-### -x *exposure*
-
-The exposure of an image describes the amount of light that is captured.
-
 ### -v
 
 Show version.
 
-### -h
+### -x *exposure*
 
-Show help.
+The exposure of an image describes the amount of light that is captured.
 
 ## Supported Input File Types
 

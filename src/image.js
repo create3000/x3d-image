@@ -99,6 +99,22 @@ async function generate (argv)
       default: [ ],
       implies: "output",
    })
+   .option ("logarithmic-depth-buffer",
+   {
+      type: "boolean",
+      alias: "l",
+      description: `Whether to use a logarithmic depth buffer. It may be necessary to use this if dealing with huge differences in scale in a single scene. It is automatically enabled if a GeoViewpoint is bound.`,
+      array: true,
+      default: [false],
+   })
+   .option ("order-independent-transparency",
+   {
+      type: "boolean",
+      alias: "o",
+      description: `Whether to use order independent transparency rendering technique.`,
+      array: true,
+      default: [false],
+   })
    .option ("tone-mapping",
    {
       type: "string",
@@ -221,11 +237,17 @@ async function generate (argv)
       if (arg (args .exposure, i))
          browser .setBrowserOption ("Exposure", arg (args .exposure, i));
 
-      if (arg (args ["tone-mapping"], i))
-         browser .setBrowserOption ("ToneMapping", arg (args ["tone-mapping"], i));
+      if (arg (args ["logarithmic-depth-buffer"], i))
+         browser .setBrowserOption ("LogarithmicDepthBuffer", arg (args ["logarithmic-depth-buffer"], i));
+
+      if (arg (args ["order-independent-transparency"], i))
+         browser .setBrowserOption ("OrderIndependentTransparency", arg (args ["order-independent-transparency"], i));
 
       if (arg (args ["text-compression"], i))
          browser .setBrowserOption ("TextCompression", arg (args ["text-compression"], i));
+
+      if (arg (args ["tone-mapping"], i))
+         browser .setBrowserOption ("ToneMapping", arg (args ["tone-mapping"], i));
 
       if (arg (args ["view-all"], i))
          browser .viewAll (0);

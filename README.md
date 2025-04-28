@@ -54,6 +54,14 @@ Add an EnvironmentLight node to scene. Useful when rendering glTF files with Phy
 
 Set input file(s). This can be either a local file path or a URL. If there are less input files than output files, the last input file is used for the remaining output files.
 
+### -l
+
+Whether to use a logarithmic depth buffer. It may be necessary to use this if dealing with huge differences in scale in a single scene. It is automatically enabled if a GeoViewpoint is bound.
+
+### -o
+
+Whether to use order independent transparency rendering technique.
+
 ### -m *[**NONE**, ACES_NARKOWICZ, ACES_HILL, ACES_HILL_EXPOSURE_BOOST, KHR_PBR_NEUTRAL]*
 
 Whether tone mapping should be applied.

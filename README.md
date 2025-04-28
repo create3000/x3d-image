@@ -66,6 +66,18 @@ Add an EnvironmentLight node to scene. Useful when rendering glTF files with Phy
 
 Creates a parent group with the model as children and sets the specified X3D rotation value.
 
+### -c *[SRGB, **LINEAR_WHEN_PHYSICAL_MATERIAL**, LINEAR]*
+
+The color space in which color calculations take place.
+
+### -x *exposure*
+
+The exposure of an image describes the amount of light that is captured.
+
+### -t *[**CHAR_SPACING**, SCALING]*
+
+Controls how Text.length and Text.maxExtent are handled. Either by adjusting char spacing or by scaling text letters.
+
 ### -v
 
 Show version.

@@ -123,6 +123,31 @@ async function generate (argv)
       array: true,
       default: [ ],
    })
+   .option ("colorSpace",
+   {
+      type: "string",
+      alias: "c",
+      description: `The color space in which color calculations take place.`,
+      choices: ["SRGB", "LINEAR_WHEN_PHYSICAL_MATERIAL", "LINEAR"],
+      array: true,
+      default: ["LINEAR_WHEN_PHYSICAL_MATERIAL"],
+   })
+   .option ("exposure",
+   {
+      type: "number",
+      alias: "x",
+      description: `The exposure of an image describes the amount of light that is captured.`,
+      array: true,
+      default: [1],
+   })
+   .option ("text-compression",
+   {
+      type: "string",
+      alias: "t",
+      description: `Controls how Text.length and Text.maxExtent are handled. Either by adjusting char spacing or by scaling text letters.`,
+      array: true,
+      default: ["CHAR_SPACING"],
+   })
    .example ([
       [
          "npx x3d-image -s 1600x900 -i file.x3d -o file.jpg",
@@ -172,25 +197,33 @@ async function generate (argv)
       await browser .resize (width, height);
       await browser .loadURL (new X3D .MFString (input)) .catch (Function .prototype);
 
-      if (arg (args .rotation, i))
-         await addTransform (browser, browser .currentScene, arg (args .rotation, i));
-
       if (arg (args .background, i))
          await addBackground (browser, browser .currentScene, arg (args .background, i));
 
       if (arg (args ["environment-light"], i))
          await addEnvironmentLight (browser, browser .currentScene, arg (args ["environment-light"], i));
 
+      if (arg (args .rotation, i))
+         await addTransform (browser, browser .currentScene, arg (args .rotation, i));
+
+      if (arg (args .colorSpace, i))
+         browser .setBrowserOption ("ColorSpace", arg (args .colorSpace, i));
+
+      if (arg (args .exposure, i))
+         browser .setBrowserOption ("Exposure", arg (args .exposure, i));
+
+      if (arg (args ["text-compression"], i))
+         browser .setBrowserOption ("TextCompression", arg (args ["text-compression"], i));
+
       if (arg (args ["view-all"], i))
-      {
          browser .viewAll (0);
-         await browser .nextFrame ();
-      }
 
       browser .beginUpdate ();
 
       if (arg (args .delay, i))
          await sleep (arg (args .delay, i) * 1000);
+
+      await browser .nextFrame ();
 
       const blob = await generateImage (canvas, mimeType, arg (args .quality, i));
 
@@ -243,8 +276,6 @@ async function addTransform (browser, scene, rotation)
    transform .rotation = r;
 
    scene .rootNodes = new X3D .MFNode (transform);
-
-   await browser .nextFrame ();
 }
 
 let background = null;
@@ -271,8 +302,6 @@ async function addBackground (browser, scene, color)
    background .transparency = 1 - c .a;
 
    scene .addRootNode (background);
-
-   await browser .nextFrame ();
 }
 
 const EnvironmentLights = new Map ([
@@ -330,7 +359,6 @@ async function addEnvironmentLight (browser, scene, name)
    scene .addRootNode (environmentLight);
 
    await Promise .all ([
-      browser .nextFrame (),
       environmentLight .diffuseTexture  .getValue () .requestImmediateLoad (),
       environmentLight .specularTexture .getValue () .requestImmediateLoad (),
    ]);

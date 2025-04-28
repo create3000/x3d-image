@@ -140,6 +140,15 @@ async function generate (argv)
       array: true,
       default: [1],
    })
+   .option ("tone-mapping",
+   {
+      type: "string",
+      alias: "m",
+      description: `Whether tone mapping should be applied.`,
+      choices: ["NONE", "ACES_NARKOWICZ", "ACES_HILL", "ACES_HILL_EXPOSURE_BOOST", "KHR_PBR_NEUTRAL"],
+      array: true,
+      default: ["NONE"],
+   })
    .option ("text-compression",
    {
       type: "string",
@@ -211,6 +220,9 @@ async function generate (argv)
 
       if (arg (args .exposure, i))
          browser .setBrowserOption ("Exposure", arg (args .exposure, i));
+
+      if (arg (args ["tone-mapping"], i))
+         browser .setBrowserOption ("ToneMapping", arg (args ["tone-mapping"], i));
 
       if (arg (args ["text-compression"], i))
          browser .setBrowserOption ("TextCompression", arg (args ["text-compression"], i));

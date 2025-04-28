@@ -74,6 +74,10 @@ The color space in which color calculations take place.
 
 The exposure of an image describes the amount of light that is captured.
 
+### -m *[**NONE**, ACES_NARKOWICZ, ACES_HILL, ACES_HILL_EXPOSURE_BOOST, KHR_PBR_NEUTRAL]*
+
+Whether tone mapping should be applied.
+
 ### -t *[**CHAR_SPACING**, SCALING]*
 
 Controls how Text.length and Text.maxExtent are handled. Either by adjusting char spacing or by scaling text letters.

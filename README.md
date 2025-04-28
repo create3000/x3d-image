@@ -14,7 +14,7 @@ You can run *x3d-image* without installing it using **npx**:
 
 ## Overview
 
-*x3d-image* is a command-line tool that renders image files from X3D (Extensible 3D) and other 3D file formats. It allows users to convert 3D scenes into 2D images, supporting various input formats such as X3D (XML, JSON, Classic VRML), VRML, glTF, OBJ, STL, PLY, and SVG. The output can be in PNG or JPEG formats.
+*x3d-image* is a command-line tool based on [X_ITE](https://create3000.github.io/x_ite/) that renders image files from X3D (Extensible 3D) and other 3D file formats. It allows users to convert 3D scenes into 2D images, supporting various input formats such as X3D (XML, JSON, Classic VRML), VRML, glTF, OBJ, STL, PLY, and SVG. Output can be in PNG or JPEG formats.
 
 Key Features:
 
@@ -117,4 +117,4 @@ $ npx x3d-image -a -e CANNON -i file.gltf -o file.png
 
 ## See Also
 
-x3d-image is based on [X_ITE](https://create3000.github.io/x_ite/), so check it out.
+* [x3d-tidy](https://www.npmjs.com/package/x3d-tidy) — X3D converter, beautifier and minimizer

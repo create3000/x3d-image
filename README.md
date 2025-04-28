@@ -58,10 +58,6 @@ Set input file(s). This can be either a local file path or a URL. If there are l
 
 Whether to use a logarithmic depth buffer. It may be necessary to use this if dealing with huge differences in scale in a single scene. It is automatically enabled if a GeoViewpoint is bound.
 
-### -o
-
-Whether to use order independent transparency rendering technique.
-
 ### -m *[**NONE**, ACES_NARKOWICZ, ACES_HILL, ACES_HILL_EXPOSURE_BOOST, KHR_PBR_NEUTRAL]*
 
 Whether tone mapping should be applied.
@@ -69,6 +65,10 @@ Whether tone mapping should be applied.
 ### -o *file(s)* ...
 
 Set output file(s). This can be either a PNG or JPEG file.
+
+### -p
+
+Whether to use order independent transparency rendering technique.
 
 ### -q *quality*
 

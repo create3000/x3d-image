@@ -107,14 +107,6 @@ async function generate (argv)
       array: true,
       default: [false],
    })
-   .option ("order-independent-transparency",
-   {
-      type: "boolean",
-      alias: "o",
-      description: `Whether to use order independent transparency rendering technique.`,
-      array: true,
-      default: [false],
-   })
    .option ("tone-mapping",
    {
       type: "string",
@@ -132,6 +124,14 @@ async function generate (argv)
       array: true,
       default: [ ],
       implies: "input",
+   })
+   .option ("order-independent-transparency",
+   {
+      type: "boolean",
+      alias: "p",
+      description: `Whether to use order independent transparency rendering technique.`,
+      array: true,
+      default: [false],
    })
    .option ("quality",
    {

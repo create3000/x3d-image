@@ -282,6 +282,7 @@ async function addTransform (browser, scene, rotation)
 
    const r = new X3D .SFRotation ();
 
+   r .setName ("rotation");
    r .fromString (rotation, scene);
 
    transform .children = scene .rootNodes;
@@ -307,6 +308,7 @@ async function addBackground (browser, scene, color)
 
    const c = new X3D .SFColorRGBA ();
 
+   c .setName ("background");
    c .fromString (color, scene);
 
    background .set_bind     = true;

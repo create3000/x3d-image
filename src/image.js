@@ -168,7 +168,7 @@ async function generate (argv)
       ],
       [
          "npx x3d-image -a -e CANNON -i file.gltf -o file.png",
-         "Render image of glTF file with view-all end environment light."
+         "Render image of glTF file with view-all and environment light."
       ],
    ])
    .help ()

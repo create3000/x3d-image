@@ -115,6 +115,14 @@ async function generate (argv)
       array: true,
       default: [ ],
    })
+   .option ("rotation",
+   {
+      type: "string",
+      alias: "r",
+      description: `Creates a parent group with the model as children and sets the specified X3D rotation value.`,
+      array: true,
+      default: [ ],
+   })
    .example ([
       [
          "npx x3d-image -s 1600x900 -i file.x3d -o file.jpg",
@@ -157,16 +165,18 @@ async function generate (argv)
          mimeType = mimeTypeFromPath (output),
          size     = arg (args .size, i) .split ("x"),
          width    = parseInt (size [0]) || 1280,
-         height   = parseInt (size [1]) || 720,
-         color    = arg (args .background, i) ?? "";
+         height   = parseInt (size [1]) || 720;
 
       browser .endUpdate ();
 
       await browser .resize (width, height);
       await browser .loadURL (new X3D .MFString (input)) .catch (Function .prototype);
 
-      if (color .length)
-         await addBackground (browser, browser .currentScene, color);
+      if (arg (args .rotation, i))
+         await addTransform (browser, browser .currentScene, arg (args .rotation, i));
+
+      if (arg (args .background, i))
+         await addBackground (browser, browser .currentScene, arg (args .background, i));
 
       if (arg (args ["environment-light"], i))
          await addEnvironmentLight (browser, browser .currentScene, arg (args ["environment-light"], i));
@@ -217,11 +227,25 @@ function mimeTypeFromPath (filename)
    }
 }
 
-const EnvironmentLights = new Map ([
-   ["CANNON",    "cannon-exterior:2"],
-   ["HELIPAD",   "helipad:1"],
-   ["FOOTPRINT", "footprint-court:1"],
-]);
+async function addTransform (browser, scene, rotation)
+{
+   scene .addComponent (browser .getComponent ("Grouping"));
+
+   await browser .loadComponents (scene);
+
+   const transform = scene .createNode ("Transform");
+
+   const r = new X3D .SFRotation ();
+
+   r .fromString (rotation, scene);
+
+   transform .children = scene .rootNodes;
+   transform .rotation = r;
+
+   scene .rootNodes = new X3D .MFNode (transform);
+
+   await browser .nextFrame ();
+}
 
 let background = null;
 
@@ -250,6 +274,12 @@ async function addBackground (browser, scene, color)
 
    await browser .nextFrame ();
 }
+
+const EnvironmentLights = new Map ([
+   ["CANNON",    "cannon-exterior:2"],
+   ["HELIPAD",   "helipad:1"],
+   ["FOOTPRINT", "footprint-court:1"],
+]);
 
 let environmentLight = null;
 

@@ -62,6 +62,10 @@ Set background to specified color. Color can be any X3D RGBA color or any CSS co
 
 Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
 
+### -r rotation
+
+Creates a parent group with the model as children and sets the specified X3D rotation value.
+
 ### -v
 
 Show version.

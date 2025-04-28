@@ -116,6 +116,14 @@ async function generate (argv)
       array: true,
       default: ["NONE"],
    })
+   .option ("order-independent-transparency",
+   {
+      type: "boolean",
+      alias: "n",
+      description: `Whether to use order independent transparency rendering technique.`,
+      array: true,
+      default: [false],
+   })
    .option ("output",
    {
       type: "string",
@@ -124,14 +132,6 @@ async function generate (argv)
       array: true,
       default: [ ],
       implies: "input",
-   })
-   .option ("order-independent-transparency",
-   {
-      type: "boolean",
-      alias: "p",
-      description: `Whether to use order independent transparency rendering technique.`,
-      array: true,
-      default: [false],
    })
    .option ("quality",
    {

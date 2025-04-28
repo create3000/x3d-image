@@ -62,13 +62,13 @@ Whether to use a logarithmic depth buffer. It may be necessary to use this if de
 
 Whether tone mapping should be applied.
 
+### -n
+
+Whether to use order independent transparency rendering technique.
+
 ### -o *file(s)* ...
 
 Set output file(s). This can be either a PNG or JPEG file.
-
-### -p
-
-Whether to use order independent transparency rendering technique.
 
 ### -q *quality*
 

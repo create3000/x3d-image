@@ -30,26 +30,6 @@ Key Features:
 
 **x3d-image** interprets the following options when it is invoked:
 
-### -i *file(s)* ...
-
-Set input file(s). This can be either a local file path or a URL. If there are less input files than output files, the last input file is used for the remaining output files.
-
-### -o *file(s)* ...
-
-Set output file(s). This can be either a PNG or JPEG file.
-
-### -s WIDTHxHEIGHT
-
-Set image size in pixels, default is '1280x720'.
-
-### -q *quality*
-
-A Number between 0 and 1 indicating the image quality to be used when creating images using file formats that support lossy compression (such as JPEG).
-
-### -d *delay*
-
-Wait the specified number of seconds before generating the image.
-
 ### -a
 
 Modify the current view so that all objects fit in view volume.
@@ -58,29 +38,49 @@ Modify the current view so that all objects fit in view volume.
 
 Set background to specified color. Color can be any X3D RGBA color or any CSS color. Use PNG as output image format for transparent backgrounds.
 
-### -e *[**CANNON**, HELIPAD, FOOTPRINT]*
-
-Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
-
-### -r rotation
-
-Creates a parent group with the model as children and sets the specified X3D rotation value.
-
 ### -c *[SRGB, **LINEAR_WHEN_PHYSICAL_MATERIAL**, LINEAR]*
 
 The color space in which color calculations take place.
 
-### -x *exposure*
+### -d *delay*
 
-The exposure of an image describes the amount of light that is captured.
+Wait the specified number of seconds before generating the image.
+
+### -e *[**CANNON**, HELIPAD, FOOTPRINT]*
+
+Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
+
+### -i *file(s)* ...
+
+Set input file(s). This can be either a local file path or a URL. If there are less input files than output files, the last input file is used for the remaining output files.
 
 ### -m *[**NONE**, ACES_NARKOWICZ, ACES_HILL, ACES_HILL_EXPOSURE_BOOST, KHR_PBR_NEUTRAL]*
 
 Whether tone mapping should be applied.
 
+### -o *file(s)* ...
+
+Set output file(s). This can be either a PNG or JPEG file.
+
+### -q *quality*
+
+A Number between 0 and 1 indicating the image quality to be used when creating images using file formats that support lossy compression (such as JPEG).
+
+### -r rotation
+
+Creates a parent group with the model as children and sets the specified X3D rotation value.
+
+### -s WIDTHxHEIGHT
+
+Set image size in pixels, default is '1280x720'.
+
 ### -t *[**CHAR_SPACING**, SCALING]*
 
 Controls how Text.length and Text.maxExtent are handled. Either by adjusting char spacing or by scaling text letters.
+
+### -x *exposure*
+
+The exposure of an image describes the amount of light that is captured.
 
 ### -v
 

@@ -48,48 +48,6 @@ async function generate (argv)
       console .error (msg);
       process .exit (1);
    })
-   .option ("input",
-   {
-      type: "string",
-      alias: "i",
-      description: "Set input file(s). If there are less input files than output files, the last input file is used for the remaining output files.",
-      array: true,
-      default: [ ],
-      implies: "output",
-   })
-   .option ("output",
-   {
-      type: "string",
-      alias: "o",
-      description: "Set output file(s). This can be either a *.png or *.jpg file.",
-      array: true,
-      default: [ ],
-      implies: "input",
-   })
-   .option ("size",
-   {
-      type: "string",
-      alias: "s",
-      description: "Set image size in pixels.",
-      array: true,
-      default: ["1280x720"],
-   })
-   .option ("quality",
-   {
-      type: "number",
-      alias: "q",
-      description: "A Number between 0 and 1 indicating the image quality to be used when creating images using file formats that support lossy compression (such as JPEG).",
-      array: true,
-      default: [1],
-   })
-   .option ("delay",
-   {
-      type: "number",
-      alias: "d",
-      description: "Wait the specified number of seconds before generating the image.",
-      array: true,
-      default: [0],
-   })
    .option ("view-all",
    {
       type: "boolean",
@@ -106,23 +64,6 @@ async function generate (argv)
       array: true,
       default: [ ],
    })
-   .option ("environment-light",
-   {
-      type: "string",
-      alias: "e",
-      description: `Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.`,
-      choices: ["CANNON", "HELIPAD", "FOOTPRINT"],
-      array: true,
-      default: [ ],
-   })
-   .option ("rotation",
-   {
-      type: "string",
-      alias: "r",
-      description: `Creates a parent group with the model as children and sets the specified X3D rotation value.`,
-      array: true,
-      default: [ ],
-   })
    .option ("colorSpace",
    {
       type: "string",
@@ -132,13 +73,31 @@ async function generate (argv)
       array: true,
       default: ["LINEAR_WHEN_PHYSICAL_MATERIAL"],
    })
-   .option ("exposure",
+   .option ("delay",
    {
       type: "number",
-      alias: "x",
-      description: `The exposure of an image describes the amount of light that is captured.`,
+      alias: "d",
+      description: "Wait the specified number of seconds before generating the image.",
       array: true,
-      default: [1],
+      default: [0],
+   })
+   .option ("environment-light",
+   {
+      type: "string",
+      alias: "e",
+      description: `Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.`,
+      choices: ["CANNON", "HELIPAD", "FOOTPRINT"],
+      array: true,
+      default: [ ],
+   })
+   .option ("input",
+   {
+      type: "string",
+      alias: "i",
+      description: "Set input file(s). If there are less input files than output files, the last input file is used for the remaining output files.",
+      array: true,
+      default: [ ],
+      implies: "output",
    })
    .option ("tone-mapping",
    {
@@ -149,6 +108,39 @@ async function generate (argv)
       array: true,
       default: ["NONE"],
    })
+   .option ("output",
+   {
+      type: "string",
+      alias: "o",
+      description: "Set output file(s). This can be either a *.png or *.jpg file.",
+      array: true,
+      default: [ ],
+      implies: "input",
+   })
+   .option ("quality",
+   {
+      type: "number",
+      alias: "q",
+      description: "A Number between 0 and 1 indicating the image quality to be used when creating images using file formats that support lossy compression (such as JPEG).",
+      array: true,
+      default: [1],
+   })
+   .option ("rotation",
+   {
+      type: "string",
+      alias: "r",
+      description: `Creates a parent group with the model as children and sets the specified X3D rotation value.`,
+      array: true,
+      default: [ ],
+   })
+   .option ("size",
+   {
+      type: "string",
+      alias: "s",
+      description: "Set image size in pixels.",
+      array: true,
+      default: ["1280x720"],
+   })
    .option ("text-compression",
    {
       type: "string",
@@ -156,6 +148,14 @@ async function generate (argv)
       description: `Controls how Text.length and Text.maxExtent are handled. Either by adjusting char spacing or by scaling text letters.`,
       array: true,
       default: ["CHAR_SPACING"],
+   })
+   .option ("exposure",
+   {
+      type: "number",
+      alias: "x",
+      description: `The exposure of an image describes the amount of light that is captured.`,
+      array: true,
+      default: [1],
    })
    .example ([
       [

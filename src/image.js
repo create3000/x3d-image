@@ -200,9 +200,10 @@ async function generate (argv)
       canvas  = document .getElementById ("browser"),
       browser = canvas .browser;
 
-   browser .setBrowserOption ("Mute",             true);
    browser .setBrowserOption ("PrimitiveQuality", "HIGH");
    browser .setBrowserOption ("TextureQuality",   "HIGH");
+   browser .setBrowserOption ("AutoUpdate",       false);
+   browser .setBrowserOption ("Mute",             true);
 
    if (!args .input .length)
       console .warn ("No input files specified.");

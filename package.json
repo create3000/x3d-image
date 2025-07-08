@@ -52,9 +52,9 @@
   ],
   "dependencies": {
     "colors": "^1.4.0",
-    "electron": "^37.1.0",
+    "electron": "^37.2.0",
     "x_ite": "^11.5.15",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "devDependencies": {
     "shell-tools": "^1.1.9"

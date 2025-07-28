@@ -380,7 +380,7 @@ async function addEnvironmentLight (browser, scene, name)
 
    const
       fileURL     = new URL (`images/${image}`, url .pathToFileURL (path .join (__dirname, "/"))),
-      specularURL = new X3D .MFString (`${fileURL}-specular.avif`, `${fileURL}-specular.jpg`);
+      specularURL = new X3D .MFString (`${fileURL}.avif`, `${fileURL}.jpg`);
 
    if (!environmentLight .specularTexture .url .equals (specularURL))
       environmentLight .specularTexture .url = specularURL;

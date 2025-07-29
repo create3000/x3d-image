@@ -358,15 +358,7 @@ async function addEnvironmentLight (browser, scene, name)
 
       environmentLight = scene .createNode ("EnvironmentLight");
 
-      const
-         specularTexture   = scene .createNode ("ImageCubeMapTexture"),
-         textureProperties = scene .createNode ("TextureProperties");
-
-      textureProperties .generateMipMaps     = true;
-      textureProperties .minificationFilter  = "NICEST";
-      textureProperties .magnificationFilter = "NICEST";
-
-      specularTexture .textureProperties = textureProperties;
+      const specularTexture = scene .createNode ("ImageCubeMapTexture")
 
       environmentLight .intensity       = 1;
       environmentLight .color           = new X3D .SFColor (1, 1, 1);

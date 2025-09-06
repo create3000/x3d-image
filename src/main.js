@@ -5,11 +5,6 @@ const
    path     = require ("path"),
    colors   = require ("colors");
 
-// Restore argv.
-
-process .argv = process .argv .concat (JSON .parse (atob (process .argv .pop ())));
-process .chdir (process .argv .pop ());
-
 // Set env vars for Electron.
 
 process .env .ELECTRON_DISABLE_SECURITY_WARNINGS = "true";

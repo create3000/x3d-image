@@ -21,6 +21,8 @@ electron .ipcRenderer .on ("main", async (event, argv) => main (argv));
 
 async function main (argv)
 {
+   console .log (argv);
+   
    try
    {
       await generate (argv);

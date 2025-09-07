@@ -5,6 +5,11 @@ const
    path     = require ("path"),
    colors   = require ("colors");
 
+// Restore cwd.
+
+if (process .argv .at (-2) === "--cwd")
+   process .chdir (process .argv .at (-1));
+
 // Set env vars for Electron.
 
 process .env .ELECTRON_DISABLE_SECURITY_WARNINGS = "true";

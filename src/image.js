@@ -163,6 +163,7 @@ async function generate (argv)
       alias: "t",
       description: `Controls how Text.length and Text.maxExtent are handled. Either by adjusting char spacing or by scaling text letters.`,
       array: true,
+      choices: ["CHAR_SPACING", "SCALING"],
       default: ["CHAR_SPACING"],
    })
    .option ("exposure",

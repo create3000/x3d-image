@@ -29,7 +29,7 @@ async function main (argv)
    }
    catch (error)
    {
-      if (typeof error === "number" || typeof error === "undefined")
+      if (typeof error === "number")
       {
          electron .ipcRenderer .send ("exit", error);
       }

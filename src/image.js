@@ -70,15 +70,17 @@ async function generate (argv)
       description: `Set background to specified color. Color can be any X3D RGBA color or any CSS color. Use PNG as output image format for transparent backgrounds.`,
       array: true,
       default: [ ],
+      requiresArg: true,
    })
    .option ("colorSpace",
    {
       type: "string",
       alias: "c",
       description: `The color space in which color calculations take place.`,
-      choices: ["SRGB", "LINEAR_WHEN_PHYSICAL_MATERIAL", "LINEAR"],
       array: true,
       default: ["LINEAR_WHEN_PHYSICAL_MATERIAL"],
+      choices: ["SRGB", "LINEAR_WHEN_PHYSICAL_MATERIAL", "LINEAR"],
+      requiresArg: true,
    })
    .option ("delay",
    {
@@ -87,15 +89,17 @@ async function generate (argv)
       description: "Wait the specified number of seconds before generating the image.",
       array: true,
       default: [0],
+      requiresArg: true,
    })
    .option ("environment-light",
    {
       type: "string",
       alias: "e",
       description: `Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.`,
-      choices: ["CANNON", "HELIPAD", "FOOTPRINT"],
       array: true,
       default: [ ],
+      choices: ["CANNON", "HELIPAD", "FOOTPRINT"],
+      requiresArg: true,
    })
    .option ("input",
    {
@@ -103,6 +107,7 @@ async function generate (argv)
       alias: "i",
       description: "Set input file(s). If there are less input files than output files, the last input file is used for the remaining output files.",
       array: true,
+      requiresArg: true,
       demandOption: true,
    })
    .option ("logarithmic-depth-buffer",
@@ -118,9 +123,10 @@ async function generate (argv)
       type: "string",
       alias: "m",
       description: `Whether tone mapping should be applied.`,
-      choices: ["NONE", "ACES_NARKOWICZ", "ACES_HILL", "ACES_HILL_EXPOSURE_BOOST", "KHR_PBR_NEUTRAL"],
       array: true,
       default: ["NONE"],
+      choices: ["NONE", "ACES_NARKOWICZ", "ACES_HILL", "ACES_HILL_EXPOSURE_BOOST", "KHR_PBR_NEUTRAL"],
+      requiresArg: true,
    })
    .option ("order-independent-transparency",
    {
@@ -136,6 +142,7 @@ async function generate (argv)
       alias: "o",
       description: "Set output file(s). This can be either a *.png or *.jpg file.",
       array: true,
+      requiresArg: true,
       implies: "input",
    })
    .option ("quality",
@@ -145,6 +152,7 @@ async function generate (argv)
       description: "A Number between 0 and 1 indicating the image quality to be used when creating images using file formats that support lossy compression (such as JPEG).",
       array: true,
       default: [1],
+      requiresArg: true,
    })
    .option ("rotation",
    {
@@ -153,6 +161,7 @@ async function generate (argv)
       description: `Creates a parent group with the model as children and sets the specified X3D rotation value.`,
       array: true,
       default: [ ],
+      requiresArg: true,
    })
    .option ("size",
    {
@@ -161,6 +170,7 @@ async function generate (argv)
       description: "Set image size in pixels.",
       array: true,
       default: ["1280x720"],
+      requiresArg: true,
    })
    .option ("text-compression",
    {
@@ -168,8 +178,9 @@ async function generate (argv)
       alias: "t",
       description: `Controls how Text.length and Text.maxExtent are handled. Either by adjusting char spacing or by scaling text letters.`,
       array: true,
-      choices: ["CHAR_SPACING", "SCALING"],
       default: ["CHAR_SPACING"],
+      choices: ["CHAR_SPACING", "SCALING"],
+      requiresArg: true,
    })
    .option ("exposure",
    {
@@ -178,6 +189,7 @@ async function generate (argv)
       description: `The exposure of an image describes the amount of light that is captured.`,
       array: true,
       default: [1],
+      requiresArg: true,
    })
    .example ([
       [

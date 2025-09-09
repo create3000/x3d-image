@@ -103,8 +103,7 @@ async function generate (argv)
       alias: "i",
       description: "Set input file(s). If there are less input files than output files, the last input file is used for the remaining output files.",
       array: true,
-      default: [ ],
-      implies: "output",
+      demandOption: true,
    })
    .option ("logarithmic-depth-buffer",
    {
@@ -137,7 +136,6 @@ async function generate (argv)
       alias: "o",
       description: "Set output file(s). This can be either a *.png or *.jpg file.",
       array: true,
-      default: [ ],
       implies: "input",
    })
    .option ("quality",
@@ -197,12 +195,6 @@ async function generate (argv)
    ])
    .help ()
    .alias ("help", "h") .argv;
-
-   if (!args .input .length)
-   {
-      console .error ("No input files specified.");
-      process .exit (1);
-   }
 
    const
       canvas  = document .getElementById ("browser"),

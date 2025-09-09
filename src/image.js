@@ -196,6 +196,12 @@ async function generate (argv)
    if (args .help)
       return;
 
+   if (!args .input .length)
+   {
+      console .error ("No input files specified.");
+      process .exit (1);
+   }
+
    const
       canvas  = document .getElementById ("browser"),
       browser = canvas .browser;
@@ -203,9 +209,6 @@ async function generate (argv)
    browser .setBrowserOption ("PrimitiveQuality", "HIGH");
    browser .setBrowserOption ("TextureQuality",   "HIGH");
    browser .setBrowserOption ("Mute",             true);
-
-   if (!args .input .length)
-      console .warn ("No input files specified.");
 
    for (const i of args .output .keys ())
    {

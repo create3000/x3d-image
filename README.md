@@ -50,6 +50,10 @@ Wait the specified number of seconds before generating the image.
 
 Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
 
+### -g
+
+Log output filenames to stdout..
+
 ### -h
 
 Show help.

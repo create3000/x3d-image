@@ -101,6 +101,13 @@ async function generate (argv)
       choices: ["CANNON", "HELIPAD", "FOOTPRINT"],
       requiresArg: true,
    })
+   .option ("log",
+   {
+      type: "boolean",
+      alias: "g",
+      description: `Log output filenames to stdout.`,
+      implies: "input",
+   })
    .option ("input",
    {
       type: "string",
@@ -269,6 +276,9 @@ async function generate (argv)
       await browser .nextFrame ();
 
       const blob = await generateImage (canvas, mimeType, arg (args .quality, i));
+
+      if (args .log)
+         console .log (output);
 
       fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
    }

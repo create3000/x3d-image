@@ -12,7 +12,7 @@ const
 
 // Redirect console messages.
 
-process .exit  = (code) => { throw code };
+process .exit  = (code = 0) => { throw code };
 console .log   = (... messages) => electron .ipcRenderer .send ("log",   messages);
 console .warn  = (... messages) => electron .ipcRenderer .send ("warn",  messages);
 console .error = (... messages) => electron .ipcRenderer .send ("error", messages);

@@ -12,7 +12,7 @@ const
 
 // Redirect console messages.
 
-process .exit  = (code)  => electron .ipcRenderer .send ("exit", code);
+process .exit  = (code) => { throw code };
 console .log   = (... messages) => electron .ipcRenderer .send ("log",   messages);
 console .warn  = (... messages) => electron .ipcRenderer .send ("warn",  messages);
 console .error = (... messages) => electron .ipcRenderer .send ("error", messages);
@@ -29,8 +29,15 @@ async function main (argv)
    }
    catch (error)
    {
-      console .error (error .message || error);
-      process .exit (1);
+      if (typeof error === "number")
+      {
+         electron .ipcRenderer .send ("exit", error);
+      }
+      else
+      {
+         console .error (error .message || error);
+         electron .ipcRenderer .send ("exit", 1);
+      }
    }
 }
 
@@ -190,12 +197,6 @@ async function generate (argv)
    ])
    .help ()
    .alias ("help", "h") .argv;
-
-   if (args .version)
-      return;
-
-   if (args .help)
-      return;
 
    if (!args .input .length)
    {

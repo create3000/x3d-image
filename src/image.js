@@ -150,6 +150,7 @@ async function generate (argv)
       description: "Set output file(s). This can be either a *.png or *.jpg file.",
       array: true,
       requiresArg: true,
+      demandOption: true,
       implies: "input",
    })
    .option ("quality",

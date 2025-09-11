@@ -101,12 +101,13 @@ async function generate (argv)
       implies: "input",
       conflicts: "output",
    })
-   .option ("log",
+   .option ("logarithmic-depth-buffer",
    {
       type: "boolean",
       alias: "g",
-      description: `Log output filenames to stdout.`,
-      implies: "input",
+      description: `Whether to use a logarithmic depth buffer. It may be necessary to use this if dealing with huge differences in scale in a single scene. It is automatically enabled if a GeoViewpoint is bound.`,
+      array: true,
+      default: [false],
    })
    .option ("input",
    {
@@ -117,13 +118,12 @@ async function generate (argv)
       requiresArg: true,
       demandOption: true,
    })
-   .option ("logarithmic-depth-buffer",
+   .option ("log",
    {
       type: "boolean",
       alias: "l",
-      description: `Whether to use a logarithmic depth buffer. It may be necessary to use this if dealing with huge differences in scale in a single scene. It is automatically enabled if a GeoViewpoint is bound.`,
-      array: true,
-      default: [false],
+      description: `Log output filenames to stdout.`,
+      implies: "input",
    })
    .option ("tone-mapping",
    {

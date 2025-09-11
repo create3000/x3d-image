@@ -52,7 +52,7 @@ Set output file extension(s), e.g. ".x3dv" or ".tidy.x3d". The output file will 
 
 ### -g
 
-Log output filenames to stdout..
+Whether to use a logarithmic depth buffer. It may be necessary to use this if dealing with huge differences in scale in a single scene. It is automatically enabled if a GeoViewpoint is bound.
 
 ### -h
 
@@ -64,7 +64,7 @@ Set input file(s). This can be either a local file path or a URL. If there are l
 
 ### -l
 
-Whether to use a logarithmic depth buffer. It may be necessary to use this if dealing with huge differences in scale in a single scene. It is automatically enabled if a GeoViewpoint is bound.
+Log output filenames to stdout.
 
 ### -m *[**NONE**, ACES_NARKOWICZ, ACES_HILL, ACES_HILL_EXPOSURE_BOOST, KHR_PBR_NEUTRAL]*
 

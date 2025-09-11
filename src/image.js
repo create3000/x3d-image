@@ -225,7 +225,7 @@ async function generate (argv)
          "Render two PNG images from two X3D files."
       ],
       [
-         "npx x3d-image -a -e CANNON -i file.gltf -o file.png",
+         "npx x3d-image -a -w CANNON -i file.gltf -e .png",
          "Render image of glTF file with view-all and environment light."
       ],
    ])

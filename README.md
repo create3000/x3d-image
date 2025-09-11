@@ -46,9 +46,9 @@ The color space in which color calculations take place.
 
 Wait the specified number of seconds before generating the image.
 
-### -e *[**CANNON**, HELIPAD, FOOTPRINT]*
+### -e *extension(s)* ...
 
-Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
+Set output file extension(s), e.g. ".x3dv" or ".tidy.x3d". The output file will have the same basename as the input file. Use either "-e" or "-o".
 
 ### -g
 
@@ -97,6 +97,10 @@ Controls how Text.length and Text.maxExtent are handled. Either by adjusting cha
 ### -v
 
 Show version.
+
+### -w *[**CANNON**, HELIPAD, FOOTPRINT]*
+
+Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.
 
 ### -x *exposure*
 

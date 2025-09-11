@@ -91,15 +91,15 @@ async function generate (argv)
       default: [0],
       requiresArg: true,
    })
-   .option ("environment-light",
+   .option ("extension",
    {
       type: "string",
       alias: "e",
-      description: `Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.`,
+      description: `Set output file extension(s), e.g. ".x3dv" or ".tidy.x3d". The output file will have the same basename as the input file.`,
       array: true,
-      default: [ ],
-      choices: ["CANNON", "HELIPAD", "FOOTPRINT"],
       requiresArg: true,
+      implies: "input",
+      conflicts: "output",
    })
    .option ("log",
    {
@@ -150,7 +150,6 @@ async function generate (argv)
       description: "Set output file(s). This can be either a *.png or *.jpg file.",
       array: true,
       requiresArg: true,
-      demandOption: true,
       implies: "input",
    })
    .option ("quality",
@@ -190,6 +189,16 @@ async function generate (argv)
       choices: ["CHAR_SPACING", "SCALING"],
       requiresArg: true,
    })
+   .option ("environment-light",
+   {
+      type: "string",
+      alias: "w",
+      description: `Add an EnvironmentLight node to scene. Useful when rendering glTF files with PhysicalMaterial nodes.`,
+      array: true,
+      default: [ ],
+      choices: ["CANNON", "HELIPAD", "FOOTPRINT"],
+      requiresArg: true,
+   })
    .option ("exposure",
    {
       type: "number",
@@ -198,6 +207,13 @@ async function generate (argv)
       array: true,
       default: [1],
       requiresArg: true,
+   })
+   .check (args =>
+   {
+      if (!args .output && !args .extension)
+         throw new Error ("Missing argument output or extension.");
+
+      return true;
    })
    .example ([
       [
@@ -224,11 +240,37 @@ async function generate (argv)
    browser .setBrowserOption ("TextureQuality",   "HIGH");
    browser .setBrowserOption ("Mute",             true);
 
-   for (const i of args .output .keys ())
+   const argc = Math .max (args .input .length, args .output ?.length ?? args .extension ?.length);
+
+   for (let i = 0; i < argc; ++ i)
    {
+      // Create input filename.
+
+      const input = new URL (arg (args .input, i), url .pathToFileURL (path .join (process .cwd (), "/")));
+
+      // Create output filename.
+
+      let output;
+
+      if (args .output)
+      {
+         output = path .resolve (process .cwd (), arg (args .output, i));
+      }
+      else if (args .extension)
+      {
+         const
+            filename  = url .fileURLToPath (input),
+            extension = arg (args .extension, i);
+
+         output = `${filename .slice (0, -path. extname (filename) .length)}${extension}`;
+      }
+
+      if (args .log)
+         console .log (output);
+
+      // Load scene.
+
       const
-         input    = new URL (arg (args .input, i), url .pathToFileURL (path .join (process .cwd (), "/"))),
-         output   = path .resolve (process .cwd (), args .output [i]),
          mimeType = mimeTypeFromPath (output),
          size     = arg (args .size, i) .split ("x"),
          width    = parseInt (size [0]) || 1280,
@@ -276,10 +318,9 @@ async function generate (argv)
 
       await browser .nextFrame ();
 
-      const blob = await generateImage (canvas, mimeType, arg (args .quality, i));
+      // Generate image.
 
-      if (args .log)
-         console .log (output);
+      const blob = await generateImage (canvas, mimeType, arg (args .quality, i));
 
       fs .writeFileSync (output, new DataView (await blob .arrayBuffer ()));
    }

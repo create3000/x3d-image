@@ -50,6 +50,10 @@
       "url": "https://github.com/create3000"
     }
   ],
+  "funding": {
+    "type": "patreon",
+    "url": "https://patreon.com/X_ITE"
+  },
   "dependencies": {
     "colors": "^1.4.0",
     "electron": "^39.2.2",

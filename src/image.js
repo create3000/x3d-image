@@ -421,6 +421,7 @@ async function addEnvironmentLight (browser, scene, name)
 
       const specularTexture = scene .createNode ("ImageCubeMapTexture")
 
+      environmentLight .global          = true;
       environmentLight .intensity       = 1;
       environmentLight .color           = new X3D .SFColor (1, 1, 1);
       environmentLight .specularTexture = specularTexture;

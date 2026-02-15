@@ -357,7 +357,7 @@ function mimeTypeFromPath (filename)
 
 async function addTransform (browser, scene, rotation)
 {
-   scene .addComponent (browser .getComponent ("Grouping"));
+   scene .updateComponent (browser .getComponent ("Grouping"));
 
    await browser .loadComponents (scene);
 
@@ -380,7 +380,7 @@ async function addBackground (browser, scene, color)
 {
    if (!background)
    {
-      scene .addComponent (browser .getComponent ("EnvironmentalEffects"));
+      scene .updateComponent (browser .getComponent ("EnvironmentalEffects"));
 
       await browser .loadComponents (scene);
 
@@ -413,7 +413,7 @@ async function addEnvironmentLight (browser, scene, name)
 {
    if (!environmentLight)
    {
-      scene .addComponent (browser .getComponent ("CubeMapTexturing"));
+      scene .updateComponent (browser .getComponent ("CubeMapTexturing"));
 
       await browser .loadComponents (scene);
 

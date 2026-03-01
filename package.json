@@ -8,7 +8,8 @@
   },
   "files": [
     "bin/*",
-    "src/*"
+    "src/*",
+    "LICENSES/*"
   ],
   "scripts": {
     "start": "electron .",

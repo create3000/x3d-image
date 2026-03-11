@@ -139,4 +139,4 @@ $ npx x3d-image -a -w CANNON -i file.gltf -e .png
 
 ## See Also
 
-* [x3d-tidy](https://www.npmjs.com/package/x3d-tidy) — X3D converter, beautifier and minimizer
+* [x3d-tidy](https://www.npmjs.com/package/x3d-tidy) — X3D Converter, Beautifier and Minimizer

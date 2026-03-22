@@ -1,6 +1,6 @@
 {
   "name": "x3d-image",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "description": "Render Image Files from X3D",
   "main": "src/main.js",
   "bin": {
@@ -58,7 +58,7 @@
   "dependencies": {
     "colors": "^1.4.0",
     "electron": "^41.0.3",
-    "x_ite": "^14.0.9",
+    "x_ite": "^14.1.0",
     "yargs": "^18.0.0"
   },
   "devDependencies": {

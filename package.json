@@ -58,8 +58,8 @@
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "electron": "^41.0.3",
-    "x_ite": "^14.1.0",
+    "electron": "^41.0.4",
+    "x_ite": "^14.1.1",
     "yargs": "^18.0.0"
   },
   "devDependencies": {

@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "electron": "^42.1.0",
+    "electron": "^42.2.0",
     "x_ite": "^15.0.2",
     "yargs": "^18.0.0"
   },

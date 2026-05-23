@@ -1,14 +1,15 @@
 "use strict";
 
 const
-   X3D      = require ("x_ite"),
-   pkg      = require ("../package.json"),
-   electron = require ("electron"),
-   yargs    = require ("yargs"),
-   path     = require ("path"),
-   url      = require ("url"),
-   fs       = require ("fs"),
-   DEBUG    = false;
+   X3D       = require ("x_ite"),
+   pkg       = require ("../package.json"),
+   electron  = require ("electron"),
+   yargs     = require ("yargs"),
+   path      = require ("path"),
+   url       = require ("url"),
+   fs        = require ("fs"),
+   OffParser = require ("x_ite-off-parser"),
+   DEBUG     = false;
 
 // Redirect console messages.
 

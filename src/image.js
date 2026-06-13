@@ -8,6 +8,7 @@ const
    path      = require ("path"),
    url       = require ("url"),
    fs        = require ("fs"),
+   SPZParser = require ("x_ite-spz-parser"),
    OffParser = require ("x_ite-off-parser"),
    DEBUG     = false;
 

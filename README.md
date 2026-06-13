@@ -109,6 +109,7 @@ The exposure of an image describes the amount of light that is captured.
 | Wavefront OBJ    | .obj           | model/obj         |
 | STL              | .stl           | model/stl         |
 | PLY              | .ply           | model/ply         |
+| SPZ              | .spz           | model/spz         |
 | OFF              | .off           | model/off         |
 | SVG Document     | .svg, .svgz    | image/svg+xml     |
 

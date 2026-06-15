@@ -1,16 +1,18 @@
 "use strict";
 
 const
-   X3D       = require ("x_ite"),
-   pkg       = require ("../package.json"),
-   electron  = require ("electron"),
-   yargs     = require ("yargs"),
-   path      = require ("path"),
-   url       = require ("url"),
-   fs        = require ("fs"),
-   SPZParser = require ("x_ite-spz-parser"),
-   OffParser = require ("x_ite-off-parser"),
-   DEBUG     = false;
+   X3D      = require ("x_ite"),
+   pkg      = require ("../package.json"),
+   electron = require ("electron"),
+   yargs    = require ("yargs"),
+   path     = require ("path"),
+   url      = require ("url"),
+   fs       = require ("fs"),
+   DEBUG    = false;
+
+require ("x_ite-spz-parser/x_ite-spz-parser-123.js");
+require ("x_ite-spz-parser/x_ite-spz-parser-4.js");
+require ("x_ite-off-parser");
 
 // Redirect console messages.
 

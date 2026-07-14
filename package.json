@@ -61,13 +61,13 @@
     "electron": "^43.1.0",
     "x_ite": "^15.1.12",
     "x_ite-off-parser": "^1.2.4",
-    "x_ite-sog-parser": "^2.0.0",
+    "x_ite-sog-parser": "^2.0.1",
     "x_ite-spz-parser": "^2.0.0",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.6.0",
+    "eslint": "^10.7.0",
     "globals": "^17.7.0",
     "shell-tools": "^1.1.9"
   }

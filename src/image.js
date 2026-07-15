@@ -340,7 +340,7 @@ function arg (arg, i)
 
 async function generateImage (canvas, mimeType, quality)
 {
-   return new Promise ((resolve, reject) =>
+   return new Promise (resolve =>
    {
       canvas .toBlob (blob => resolve (blob), mimeType, quality);
    });

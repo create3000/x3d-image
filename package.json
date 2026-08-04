@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "electron": "^43.2.0",
+    "electron": "^43.3.0",
     "x_ite": "^16.0.5",
     "x_ite-off-parser": "^1.2.4",
     "x_ite-sog-parser": "^2.0.1",
@@ -68,7 +68,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "eslint": "^10.8.0",
-    "globals": "^17.8.0",
+    "globals": "^17.9.0",
     "shell-tools": "^1.1.9"
   }
 }

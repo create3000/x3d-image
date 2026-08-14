@@ -7,8 +7,7 @@ const
    yargs    = require ("yargs"),
    path     = require ("path"),
    url      = require ("url"),
-   fs       = require ("fs"),
-   DEBUG    = false;
+   fs       = require ("fs");
 
 require ("x_ite-sog-parser");
 require ("x_ite-spz-parser/x_ite-spz-parser-123.js");
@@ -55,7 +54,7 @@ async function generate (argv)
    .command ("Render image files from X3D")
    .version (pkg .version)
    .alias ("v", "version")
-   .fail ((msg, error, yargs) =>
+   .fail ((msg) =>
    {
       console .error (msg);
       process .exit (1);
@@ -377,6 +376,8 @@ async function addTransform (browser, scene, rotation)
    transform .rotation = r;
 
    scene .rootNodes = new X3D .MFNode (transform);
+
+   await browser .nextFrame ();
 }
 
 let background = null;

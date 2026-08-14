@@ -312,15 +312,17 @@ async function generate (argv)
       if (arg (args ["tone-mapping"], i))
          browser .setBrowserOption ("ToneMapping", arg (args ["tone-mapping"], i));
 
+      await browser .nextFrame ();
+
       if (arg (args ["view-all"], i))
          browser .viewAll (0);
+
+      await browser .nextFrame ();
 
       browser .beginUpdate ();
 
       if (arg (args .delay, i))
          await sleep (arg (args .delay, i) * 1000);
-
-      await browser .nextFrame ();
 
       // Generate image.
 
@@ -376,8 +378,6 @@ async function addTransform (browser, scene, rotation)
    transform .rotation = r;
 
    scene .rootNodes = new X3D .MFNode (transform);
-
-   await browser .nextFrame ();
 }
 
 let background = null;

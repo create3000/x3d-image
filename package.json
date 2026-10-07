@@ -21,6 +21,7 @@
     "url": "git+https://github.com/create3000/x3d-image.git"
   },
   "keywords": [
+    "Gaussian-Splatting",
     "GLB",
     "glTF2",
     "image",
